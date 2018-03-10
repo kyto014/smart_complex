@@ -28,7 +28,7 @@ class PersonController extends Controller
         $version = \request()->getRequestUri();
 
         $route = Route::current();
-        //dump(\request()->get('key'));
+        //dump(\request());
         //sdebugbar()->info($route);
         $people = Person::with('keys')->get();
         //$people->surname = $route;
