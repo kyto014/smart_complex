@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Door;
+use App\Models\RFID\v1\Door;
 use Illuminate\Http\Request;
 
 class DoorController extends Controller

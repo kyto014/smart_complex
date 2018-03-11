@@ -16,19 +16,19 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-//Route::group(['namespace' => 'App\Http\Controllers\v2'], function (){
+//Route::group(['namespace' => 'App\Http\Controllers\v1'], function (){
 //Route::prefix(config('app.api_version'))->group(function (){
-    Route::post('/people', 'App\Http\Controllers\v2\PersonController@index');
-    Route::get('/people/{id}','App\Http\Controllers\v2\PersonController@show');
-    //Route::post('/people','App\Http\Controllers\v2\PersonController@store');
-    Route::put('people/{id}', 'App\Http\Controllers\v2\PersonController@update');
-    Route::delete('people/{id}','App\Http\Controllers\v2\PersonController@destroy');
+    Route::post('/people', 'App\Http\Controllers\RFID\v1\PersonController@index');
+    Route::get('/people/{id}','App\Http\Controllers\RFID\v1\PersonController@show');
+    //Route::post('/people','App\Http\Controllers\v1\PersonController@store');
+    Route::put('people/{id}', 'App\Http\Controllers\RFID\v1\PersonController@update');
+    Route::delete('people/{id}','App\Http\Controllers\RFID\v1\PersonController@destroy');
 
-Route::get('/people/version', 'App\Http\Controllers\v2\PersonController@version');
+Route::get('/people/version', 'App\Http\Controllers\RFID\v1\PersonController@version');
 //} );
 
-Route::get('/{people/{id}/keys}', 'KeyController@index');
+/*Route::get('/{people/{id}/keys}', 'KeyController@index');
 Route::post('/people/{id}/keys', 'KeyController@store');
 Route::get('/people/{person_id}/keys/{key_id}', 'KeyController@show');
 Route::put('people/{person_id}/keys/{key_id}', 'KeyController@update');
-Route::delete('people/{person_id}/keys/{key_id}','KeyController@destroy');
+Route::delete('people/{person_id}/keys/{key_id}','KeyController@destroy');*/

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Miccom_configuration;
+use App\Models\RFID\v1\Miccom_configuration;
 use Illuminate\Http\Request;
 
 class MiccomConfigurationController extends Controller

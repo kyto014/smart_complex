@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Key_state;
+use App\Models\RFID\v1\Key_state;
 use Illuminate\Http\Request;
 
 class KeyStateController extends Controller

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Audit_log;
+use App\Models\RFID\v1\Audit_log;
 use Illuminate\Http\Request;
 
 class AuditLogController extends Controller

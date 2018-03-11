@@ -1,11 +1,12 @@
 <?php
-namespace App\Http\Controllers\v2;
+namespace App\Http\Controllers\RFID\v1;
 
 
 use App\Http\Resources\PersonResource;
-use App\Models\Person;
-use App\Models\Person_type;
-use App\Models\Role;
+
+use App\Models\RFID\v1\Person;
+use App\Models\RFID\v1\Person_type;
+use App\Models\RFID\v1\Role;
 use Barryvdh\Debugbar\LaravelDebugbar;
 use DebugBar\DebugBar;
 use Illuminate\Http\Request;
@@ -13,7 +14,6 @@ use Illuminate\Http\Resources\Json\Resource;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Controller;
 
 class PersonController extends Controller

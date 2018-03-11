@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Gadget;
+use App\Models\RFID\v1\Gadget;
 use Illuminate\Http\Request;
 
 class GadgetController extends Controller

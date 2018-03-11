@@ -28,10 +28,10 @@ class Key extends Model
     public $timestamps = false;
 
     public function role(){
-        return $this->belongsTo('App\Models\Person');
+        return $this->belongsTo('App\Models\RFID\v1\Person');
     }
 
     public function people(){
-        return $this->belongsTo('App\Models\Person','person_id');
+        return $this->belongsTo('App\Models\RFID\v1\Person','person_id');
     }
 }

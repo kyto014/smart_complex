@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\RFID;
+namespace App\Models\RFID\v1;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -28,6 +28,6 @@ class Role extends Model
     public $timestamps = false;
 
     public function people(){
-        return $this->hasMany('App\Models\Person','role_id');
+        return $this->hasMany('App\Models\RFID\v1\Person','role_id');
     }
 }

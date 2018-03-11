@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Access_profile;
+use App\Models\RFID\v1\Access_profile;
 use Illuminate\Http\Request;
 
 class AccessProfileController extends Controller

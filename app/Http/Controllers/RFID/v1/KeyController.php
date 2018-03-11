@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\KeyResource;
 use App\Http\Resources\PersonResource;
-use App\Models\Key;
-use App\Models\Person;
+use App\Models\RFID\v1\Key;
+use App\Models\RFID\v1\Person;
 use Illuminate\Http\Request;
 
 class KeyController extends Controller

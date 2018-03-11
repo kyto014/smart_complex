@@ -13,7 +13,7 @@ class CheckApiVersion
 {
     public function handle($request, Closure $next)
     {
-        return redirect('/api/v2/people/version');
+        return redirect('/api/v1/people/version');
 
 
         //return $next($request);

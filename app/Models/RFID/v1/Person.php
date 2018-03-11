@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\RFID;
+namespace App\Models\RFID\v1;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -46,19 +46,19 @@ class Person extends Model
     ];
 
     public function person_type(){
-        return $this->belongsTo('App\Models\Person_type','person_type_id');
+        return $this->belongsTo('App\Models\RFID\v1\Person_type','person_type_id');
     }
 
     public function role(){
-        return $this->belongsTo('App\Models\Role','role_id');
+        return $this->belongsTo('App\Models\RFID\v1\Role','role_id');
     }
 
     public function keys(){
-        return $this->hasMany('App\Models\Key','person_id');
+        return $this->hasMany('App\Models\RFID\v1\Key','person_id');
     }
 
     public function profiles(){
-        return $this->belongsToMany('App\Models\Profile');
+        return $this->belongsToMany('App\Models\RFID\v1\Profile');
     }
 
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Key_type;
+use App\Models\RFID\v1\Key_type;
 use Illuminate\Http\Request;
 
 class KeyTypeController extends Controller

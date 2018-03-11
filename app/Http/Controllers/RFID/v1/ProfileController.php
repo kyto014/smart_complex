@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Person;
-use App\Models\Profile;
+use App\Models\RFID\v1\Person;
+use App\Models\RFID\v1\Profile;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller

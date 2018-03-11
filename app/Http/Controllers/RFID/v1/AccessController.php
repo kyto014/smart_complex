@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Access;
+use App\Models\RFID\v1\Access;
 use Illuminate\Http\Request;
 
 class AccessController extends Controller

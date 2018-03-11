@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Permission_role;
+use App\Models\RFID\v1\Permission_role;
 use Illuminate\Http\Request;
 
 class PermissionRoleController extends Controller
