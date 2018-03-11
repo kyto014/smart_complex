@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\RFID;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Person_type extends Model
+class Role extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'person_type';
+    protected $table = 'role';
 
     /**
      * The primary key for the model.
      *
      * @var string
      */
-    protected $primaryKey = 'person_type_id';
+    protected $primaryKey = 'role_id';
 
     /**
      * Indicates if the model should be timestamped.
@@ -28,6 +28,6 @@ class Person_type extends Model
     public $timestamps = false;
 
     public function people(){
-        return $this->hasMany('App\Models\Person','person_type_id');
+        return $this->hasMany('App\Models\Person','role_id');
     }
 }
