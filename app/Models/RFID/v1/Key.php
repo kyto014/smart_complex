@@ -27,11 +27,16 @@ class Key extends Model
      */
     public $timestamps = false;
 
-    public function role(){
-        return $this->belongsTo('App\Models\RFID\v1\Person');
+
+    public function person(){
+        return $this->belongsTo('App\Models\RFID\v1\Person','person_id');
     }
 
-    public function people(){
-        return $this->belongsTo('App\Models\RFID\v1\Person','person_id');
+    public function keyType(){
+        return $this->belongsTo('App\Models\RFID\v1\Key_type','key_type_id');
+    }
+
+    public function keyState(){
+        return $this->belongsTo('App\Models\RFID\v1\Key_state','key_state_id');
     }
 }

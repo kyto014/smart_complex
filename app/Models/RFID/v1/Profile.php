@@ -28,6 +28,10 @@ class Profile extends Model
     public $timestamps = false;
 
     public function people(){
-        return $this->belongsToMany('App\Models\RFID\v1\Person');
+        return $this->belongsToMany('App\Models\RFID\v1\Person','person_profile','profile_id','person_id');
+    }
+
+    public function accesses(){
+        return $this->belongsToMany('App\Models\RFID\v1\Access','access_profile','profile_id','access_id');
     }
 }

@@ -57,8 +57,12 @@ class Person extends Model
         return $this->hasMany('App\Models\RFID\v1\Key','person_id');
     }
 
+    public function auditLogs(){
+        return $this->hasMany('App\Models\RFID\v1\Audit_log','person_id');
+    }
+
     public function profiles(){
-        return $this->belongsToMany('App\Models\RFID\v1\Profile');
+        return $this->belongsToMany('App\Models\RFID\v1\Profile','person_profile','person_id','profile_id');
     }
 
 }

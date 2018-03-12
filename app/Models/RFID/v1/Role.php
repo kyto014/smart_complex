@@ -30,4 +30,8 @@ class Role extends Model
     public function people(){
         return $this->hasMany('App\Models\RFID\v1\Person','role_id');
     }
+
+    public function permissions(){
+        return $this->belongsToMany('App\Models\RFID\v1\Permission','permission_role','role_id','permission_id');
+    }
 }
