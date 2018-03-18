@@ -32,15 +32,17 @@ class PersonController extends Controller
         //sdebugbar()->info($route);
         $people = Person::with('keys')->get();
         //$people->surname = $route;
-        //return response()->json(new PersonResource($people),200);
+        return response()->json($people,200);
         //dump($version);
         //return (PersonResource::collection($people));
+        /*
         if (\request()->get("key") == "36069191763196932"){
             return response()->json("access granted",200);
         }else{
             return response()->json("access denied",200);
 
         }
+        */
         //return "aaa";
     }
 
