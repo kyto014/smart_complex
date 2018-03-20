@@ -65,4 +65,7 @@ class Person extends Model
         return $this->belongsToMany('App\Models\RFID\v1\Profile','person_profile','person_id','profile_id');
     }
 
+    public function secondFactors(){
+        return $this->belongsToMany('App\Models\RFID\v1\SecondFactor','person_second_factor','person_id','second_factor_id');
+    }
 }

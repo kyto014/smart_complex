@@ -34,4 +34,8 @@ class Access extends Model
     public function profiles(){
         return $this->belongsToMany('App\Models\RFID\v1\Profile','access_profile','access_id','profile_id');
     }
+
+    public  function access(){
+        return $this->hasOne('App\Models\RFID\v1\Access','next_access_id');
+    }
 }

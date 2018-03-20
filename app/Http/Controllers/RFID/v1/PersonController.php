@@ -8,6 +8,7 @@ use App\Models\RFID\v1\Person;
 use App\Models\RFID\v1\Person_type;
 use App\Models\RFID\v1\Role;
 use Barryvdh\Debugbar\LaravelDebugbar;
+use Carbon\Carbon;
 use DebugBar\DebugBar;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\Resource;
@@ -32,7 +33,8 @@ class PersonController extends Controller
         //sdebugbar()->info($route);
         $people = Person::with('keys')->get();
         //$people->surname = $route;
-        return response()->json($people,200);
+        //return response()->json($people,200);
+        return Carbon::now();
         //dump($version);
         //return (PersonResource::collection($people));
         /*
