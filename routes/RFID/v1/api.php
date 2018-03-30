@@ -23,12 +23,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     //Route::post('/people','App\Http\Controllers\v1\PersonController@store');
     Route::put('people/{id}', 'App\Http\Controllers\RFID\v1\PersonController@update');
     Route::delete('people/{id}','App\Http\Controllers\RFID\v1\PersonController@destroy');
+    Route::get('/people/version', 'App\Http\Controllers\RFID\v1\PersonController@version');
 
-Route::get('/people/version', 'App\Http\Controllers\RFID\v1\PersonController@version');
 //} );
 
-Route::post('/doors/enter', 'App\Http\Controllers\RFID\v1\DoorController@enter');
-
+    Route::post('/doors/enter', 'App\Http\Controllers\RFID\v1\DoorController@enter');
+    Route::post('/doors/enter/second_factor', 'App\Http\Controllers\RFID\v1\DoorController@second_factor');
 /*Route::get('/{people/{id}/keys}', 'KeyController@index');
 Route::post('/people/{id}/keys', 'KeyController@store');
 Route::get('/people/{person_id}/keys/{key_id}', 'KeyController@show');
