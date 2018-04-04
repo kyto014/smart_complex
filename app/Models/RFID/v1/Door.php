@@ -35,7 +35,7 @@ class Door extends Model
         return $this->belongsTo('App\Models\RFID\v1\Miccom','miccom_id');
     }
 
-    public function secondFactor(){
-        return $this->belongsTo('App\Models\RFID\v1\SecondFactor','second_factor_id');
+    public function secondFactorType(){
+        return $this->belongsTo('App\Models\RFID\v1\SecondFactorType','second_factor_type_id');
     }
 }

@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\RFID\v1;
 
 use App\Models\RFID\v1\Access;
 use Illuminate\Http\Request;
+
+use App\Http\Controllers\Controller;
 
 class AccessController extends Controller
 {
@@ -12,9 +14,10 @@ class AccessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getAll()
     {
-        //
+        $accesses = Access::all();
+        return $accesses;
     }
 
     /**
@@ -35,18 +38,25 @@ class AccessController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $access = new Access();
+        $access->access_name = $request->input('access_name');
+        $access->time_from = $request->input('time_from');
+        $access->time_to = $request->input('time_to');
+        $access->door_id = $request->input('door_id');
+        $access->next_access_id = $request->input('next_access_id');
+        $access->save();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Access  $access
+     * @param  \App\Models\Access  $access_id
      * @return \Illuminate\Http\Response
      */
-    public function show(Access $access)
+    public function get($access_id)
     {
-        //
+        $access = Access::find($access_id);
+        return $access;
     }
 
     /**
@@ -64,22 +74,34 @@ class AccessController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Access  $access
+     * @param  \App\Models\Access  $access_id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Access $access)
+    public function update(Request $request, $access_id)
     {
-        //
+        $access = Access::where('access_id',$access_id)->first();
+        if ($access){
+            $access->access_name = $request->input('access_name');
+            $access->time_from = $request->input('time_from');
+            $access->time_to = $request->input('time_to');
+            $access->door_id = $request->input('door_id');
+            $access->next_access_id = $request->input('next_access_id');
+            $access->save();
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Access  $access
+     * @param  \App\Models\Access  $access_id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Access $access)
+    public function destroy($access_id)
     {
-        //
+        $access = Access::where('access_id',$access_id)->first();
+        if ($access->next_access_id != null){
+
+
+        }
     }
 }

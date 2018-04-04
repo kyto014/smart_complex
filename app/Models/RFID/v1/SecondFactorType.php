@@ -30,4 +30,8 @@ class SecondFactorType extends Model
     public function secondFactors(){
         return $this->hasMany('App\Models\RFID\v1\SecondFactor','second_factor_type_id');
     }
+
+    public function doors(){
+        return $this->hasMany('App\Models\RFID\v1\Door','second_factor_type_id');
+    }
 }

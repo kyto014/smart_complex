@@ -18,13 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 //Route::group(['namespace' => 'App\Http\Controllers\v1'], function (){
 //Route::prefix(config('app.api_version'))->group(function (){
-    Route::post('/people', 'App\Http\Controllers\RFID\v1\PersonController@index');
-    Route::get('/people/{id}','App\Http\Controllers\RFID\v1\PersonController@show');
-    //Route::post('/people','App\Http\Controllers\v1\PersonController@store');
-    Route::put('people/{id}', 'App\Http\Controllers\RFID\v1\PersonController@update');
-    Route::delete('people/{id}','App\Http\Controllers\RFID\v1\PersonController@destroy');
 
-Route::get('/people/version', 'App\Http\Controllers\RFID\v1\PersonController@version');
 //} );
 
 Route::post('/doors/enter', 'App\Http\Controllers\RFID\v1\DoorController@enter');

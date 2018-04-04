@@ -27,9 +27,6 @@ class SecondFactor extends Model
      */
     public $timestamps = false;
 
-    public function doors(){
-        return $this->hasMany('App\Models\RFID\v1\Door','second_factor_id');
-    }
 
     public function secondFactorType(){
         return $this->belongsTo('App\Models\RFID\v1\SecondFactorType','second_factor_type_id');

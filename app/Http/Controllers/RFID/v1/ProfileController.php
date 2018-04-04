@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\RFID\v1;
 
 use App\Models\RFID\v1\Person;
 use App\Models\RFID\v1\Profile;
 use Illuminate\Http\Request;
+
+use App\Http\Controllers\Controller;
 
 class ProfileController extends Controller
 {
@@ -13,11 +15,12 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function getAll()
     {
-        // get all profiles to specific person
-        $profiles = Person::where('person_id',$id)->profiles;
+        //$profiles = Person::where('person_id',$id)->profiles;
+        $profiles = Profile::all();
                     //Person::where('person_id',$id)->with('profiles')->first();
+        return $profiles;
     }
 
     /**
@@ -36,17 +39,25 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
+        //store new profile
+        $profile = new Profile();
+        $profile->profile_name = $request->input('profile_name');
+        $profile->description = $request->input('description');
+        $profile->save();
+
         // store profile for person
-        $person = Person::find($id);
-        $newProfile = new Profile();
-        $person->profiles()->attach($newProfile);
+        //$person = Person::find($person_id);
+        //$newProfile = new Profile();
+        //$person->profiles()->attach($newProfile);
 
         //delete profile
         //$person->profiles()->detach($newProfile);
         //delte all profile
         //$person->profiles()->detach();
+
+
 
         // === podmienka overuje takto
         //do buducna - ci sa v profiloch cloveka nachadza dany profil alebo nie
@@ -62,9 +73,10 @@ class ProfileController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function show(Profile $profile)
+    public function get($profile_id)
     {
-        //
+        $profile = Profile::find($profile_id);
+        return $profile;
     }
 
     /**
@@ -85,9 +97,14 @@ class ProfileController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profile $profile)
+    public function update(Request $request, $profile_id)
     {
-        //
+        $profile = Profile::find($profile_id);
+        if ($profile){
+            $profile->profile_name = $request->input('profile_name');
+            $profile->description = $request->input('description');
+            $profile->save();
+        }
     }
 
     /**
@@ -96,8 +113,15 @@ class ProfileController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Profile $profile)
+    public function destroy($profile_id)
     {
-        //
+        $profile = Profile::find($profile_id);
+        if ($profile->accesses){
+            $profile->accesses()->detach();
+        }
+        if ($profile->people){
+            $profile->people()->detach();
+        }
+        Profile::destroy($profile_id);
     }
 }
