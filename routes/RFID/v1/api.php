@@ -19,10 +19,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //Route::group(['namespace' => 'App\Http\Controllers\v1'], function (){
 //Route::prefix(config('app.api_version'))->group(function (){
 
-//} );
 
-Route::post('/doors/enter', 'App\Http\Controllers\RFID\v1\DoorController@enter');
 
+    Route::post('/doors/enter', 'App\Http\Controllers\RFID\v1\DoorController@enter');
+    Route::post('/doors/enter/second_factor', 'App\Http\Controllers\RFID\v1\DoorController@second_factor');
 /*Route::get('/{people/{id}/keys}', 'KeyController@index');
 Route::post('/people/{id}/keys', 'KeyController@store');
 Route::get('/people/{person_id}/keys/{key_id}', 'KeyController@show');
