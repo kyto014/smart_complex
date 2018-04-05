@@ -4,7 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        {{--<script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>--}}
+        <script src="{{ URL::asset('js/jquery.js') }}"></script>
+        <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ URL::asset('js/dataTables.min.js') }}" type="text/javascript" ></script>
+
+        <link href="{{ URL::asset('css/dataTables.min.css') }}" rel="stylesheet"/>
         <link href="{{ URL::asset('css/bootstrap.css') }}" rel="stylesheet">
         <link href="{{ URL::asset('css/additional_style.css') }}" rel="stylesheet">
         @yield('additional_headers')
@@ -19,11 +23,6 @@
                     <li><a href="{{ url('/profiles') }}">profily</a></li>
                     <li><a href="{{ url('/accesses') }}">prístupy</a></li>
                     <li><a href="{{ url('/keys') }}">kľúče</a></li>
-                    {{--<li><a href="#">dvere</a></li>--}}
-                    {{--<li><a href="#">roly</a></li>--}}
-                    {{--<li><a href="#">povolenia</a></li>--}}
-                    {{--<li><a href="#">hardware</a></li>--}}
-                    {{--<li><a href="#">logy</a></li>--}}
                 </ul>
             </div>
         </div>

@@ -32,8 +32,9 @@ class PersonController extends Controller
         //$people = Person::with('keys')->get();
         $people = Person::all();
         //return response()->json($people,200);
-
-        return view('people.people', $people);
+//        var_dump($people);
+        $data = ['people' => $people];
+        return view('people.people', $data);
 //        return $people;
     }
 
@@ -91,8 +92,8 @@ class PersonController extends Controller
     {
         //$person = Person::find($id);
         $person = Person::with('profiles', 'secondFactors','keys')->where('person_id',$person_id)->first();
-
-        return $person;
+        $data = ['person' => $person];
+        return view('people.person', $data);
     }
 
 
