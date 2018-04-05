@@ -27,6 +27,15 @@ class Key extends Model
      */
     public $timestamps = false;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'key_type_id','key_state_id','person_id'
+    ];
+
 
     public function person(){
         return $this->belongsTo('App\Models\RFID\v1\Person','person_id');

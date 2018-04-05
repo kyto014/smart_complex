@@ -27,6 +27,15 @@ class Access extends Model
      */
     public $timestamps = false;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'access_name','time_from','time_to','door_id'
+    ];
+
     public function door(){
         return $this->belongsTo('App\Models\RFID\v1\Door','door_id');
     }
