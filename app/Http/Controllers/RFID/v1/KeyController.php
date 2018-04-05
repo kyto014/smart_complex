@@ -26,8 +26,9 @@ class KeyController extends Controller
         //$person = Person::where('person_id',$id)->with('keys')->first();
 
         $keys = Key::all();
-        var_dump($keys);
-        return response()->json($keys,200);
+//        var_dump($keys);
+//        return response()->json($keys,200);
+        return view('keys.keys', $keys);
     }
 
     /**

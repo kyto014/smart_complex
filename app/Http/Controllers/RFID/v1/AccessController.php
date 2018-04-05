@@ -17,7 +17,8 @@ class AccessController extends Controller
     public function getAll()
     {
         $accesses = Access::all();
-        return $accesses;
+       // return $accesses;
+        return view('accesses.accesses', $accesses);
     }
 
     /**

@@ -20,7 +20,8 @@ class ProfileController extends Controller
         //$profiles = Person::where('person_id',$id)->profiles;
         $profiles = Profile::all();
                     //Person::where('person_id',$id)->with('profiles')->first();
-        return $profiles;
+        //return $profiles;
+        return view('profiles.profiles', $profiles);
     }
 
     /**

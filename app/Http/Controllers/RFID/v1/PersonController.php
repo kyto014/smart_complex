@@ -33,8 +33,8 @@ class PersonController extends Controller
         $people = Person::all();
         //return response()->json($people,200);
 
-
-        return $people;
+        return view('people.people', $people);
+//        return $people;
     }
 
 

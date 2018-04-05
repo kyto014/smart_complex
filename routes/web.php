@@ -14,21 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'App\Http\Controllers\Controller@welcomePage');
 
-Route::get('/people', 'App\Http\Controllers\RFID\v1\PersonController@getAll');
-Route::get('/people/{person_id}','App\Http\Controllers\RFID\v1\PersonController@get');
-Route::post('/people', 'App\Http\Controllers\RFID\v1\PersonController@create');
-Route::post('people/{person_id}', 'App\Http\Controllers\RFID\v1\PersonController@update');
-Route::delete('people/{person_id}','App\Http\Controllers\RFID\v1\PersonController@delete');
+Route::get('/people', 'App\Http\Controllers\RFID\v1\PersonController@getAll'); //vlastny
+Route::get('/people/{person_id}','App\Http\Controllers\RFID\v1\PersonController@get'); //vlastny > profil cloveka + jeho kluce + jeho profily + druhe faktory
+Route::post('/people', 'App\Http\Controllers\RFID\v1\PersonController@create'); //vlastny > toto je submit formulara pre pridanie pridanie usera > napr button na /people
+Route::post('people/{person_id}', 'App\Http\Controllers\RFID\v1\PersonController@update'); //NIE vlastny > toto je kam ide submit button pre /people/{person_id}
+Route::delete('people/{person_id}','App\Http\Controllers\RFID\v1\PersonController@delete'); //NIE vlastny > v tabulke /people bude delete btn a tu ho presmeruje (treba alert ze are zou sure?)
 
-Route::get('/people/keys', 'App\Http\Controllers\RFID\v1\KeyController@getAll');
-Route::get('/people/keys/{key_id}','App\Http\Controllers\RFID\v1\KeyController@get');
-Route::post('/people/keys', 'App\Http\Controllers\RFID\v1\KeyController@create');
-Route::post('people/keys/{key_id}', 'App\Http\Controllers\RFID\v1\KeyController@update');
-Route::delete('people/keys/{key_id}','App\Http\Controllers\RFID\v1\KeyController@delete');
+Route::get('/keys', 'App\Http\Controllers\RFID\v1\KeyController@getAll');
+Route::get('/keys/{key_id}','App\Http\Controllers\RFID\v1\KeyController@get');
+Route::post('/keys', 'App\Http\Controllers\RFID\v1\KeyController@create');
+Route::post('/keys/{key_id}', 'App\Http\Controllers\RFID\v1\KeyController@update');
+Route::delete('/keys/{key_id}','App\Http\Controllers\RFID\v1\KeyController@delete');
 
 Route::get('/profiles', 'App\Http\Controllers\RFID\v1\ProfileController@getAll');
 Route::get('/profiles/{profile_id}','App\Http\Controllers\RFID\v1\ProfileController@get');
@@ -36,8 +34,8 @@ Route::post('/profiles', 'App\Http\Controllers\RFID\v1\ProfileController@create'
 Route::post('/profiles/{profile_id}', 'App\Http\Controllers\RFID\v1\ProfileController@update');
 Route::delete('/profiles/{profile_id}','App\Http\Controllers\RFID\v1\ProfileController@delete');
 
-Route::get('/profiles/accesses', 'App\Http\Controllers\RFID\v1\AccessController@getAll');
-Route::get('/profiles/accesses/{access_id}','App\Http\Controllers\RFID\v1\AccessController@get');
-Route::post('/profiles/accesses', 'App\Http\Controllers\RFID\v1\AccessController@create');
-Route::post('/profiles/accesses/{access_id}', 'App\Http\Controllers\RFID\v1\AccessController@update');
-Route::delete('/profiles/accesses/{access_id}','App\Http\Controllers\RFID\v1\AccessController@delete');
+Route::get('/accesses', 'App\Http\Controllers\RFID\v1\AccessController@getAll');
+Route::get('/accesses/{access_id}','App\Http\Controllers\RFID\v1\AccessController@get');
+Route::post('/accesses', 'App\Http\Controllers\RFID\v1\AccessController@create');
+Route::post('/accesses/{access_id}', 'App\Http\Controllers\RFID\v1\AccessController@update');
+Route::delete('/accesses/{access_id}','App\Http\Controllers\RFID\v1\AccessController@delete');
