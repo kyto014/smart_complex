@@ -27,6 +27,16 @@ class Profile extends Model
      */
     public $timestamps = false;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'profile_name','description'
+    ];
+
+
     public function people(){
         return $this->belongsToMany('App\Models\RFID\v1\Person','person_profile','profile_id','person_id');
     }
