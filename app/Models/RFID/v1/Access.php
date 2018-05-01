@@ -45,6 +45,6 @@ class Access extends Model
     }
 
     public  function access(){
-        return $this->hasOne('App\Models\RFID\v1\Access','next_access_id');
+        return $this->belongsTo('App\Models\RFID\v1\Access','next_access_id');
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\RFID\v1;
 
 use App\Models\RFID\v1\Access;
+use App\Models\RFID\v1\Door;
+use App\Models\RFID\v1\Person;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
@@ -16,9 +18,12 @@ class AccessController extends Controller
      */
     public function getAll()
     {
-        $accesses = Access::all();
-       // return $accesses;
-        return view('accesses.accesses', $accesses);
+        $accesses = Access::with('door','access')->get();
+//        print_r($accesses);
+       $data = [
+           "accesses" => $accesses
+       ];
+        return view('accesses.accesses', $data);
     }
 
     /**
@@ -97,12 +102,8 @@ class AccessController extends Controller
      * @param  \App\Models\Access  $access_id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($access_id)
+    public function delete($access_id)
     {
-        $access = Access::where('access_id',$access_id)->first();
-        if ($access->next_access_id != null){
-
-
-        }
+        return Access::destroy($access_id);
     }
 }

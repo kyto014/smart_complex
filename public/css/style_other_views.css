@@ -1,0 +1,91 @@
+.capitalize.mainTitle{
+    padding-left: 0;
+    text-transform: uppercase;
+}
+.col-sm-2.col-form-label{
+    text-align: right;
+}
+.form-group{
+    margin-bottom: 1px;
+}
+.col-sm-2.col-form-label{
+    font-weight: 500;
+}
+.subTable-thead{
+    font-style: italic;
+}
+.btn.buttonDoSomething{
+    color: #fff;
+}
+.col1{
+    width: 30%;
+}
+.col2{
+    width: 50%;
+}
+.col-btns{
+    /*width: 15%;*/
+    text-align: center;
+    padding-top:4px;
+}
+.subTable{
+    margin-top: 4px;
+    width: 80%;
+}
+.table th{
+    padding: 3px 0 3px 5px;
+    font-weight: 500;
+}
+.table td{
+    padding: 5px 5px 5px 5px;
+}
+/*.td-col1, .td-col2{*/
+    /*padding: 6px 0 0 10px;*/
+/*}*/
+.col-btns{
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+}
+.save-btn, .cancel-btn{
+    color:#fff;
+}
+.save-btn{
+    border-color:#147853;
+    background-color: #147853;
+}
+.save-btn:hover{
+    background-color: #199c6b;
+}
+.cancel-btn{
+    background-color: #848484;
+    border-color: #848484;
+}
+.cancel-btn:hover{
+    background-color: #acacac;
+    color: #fff;
+}
+.btn-back{
+    border-color:#147853;
+    background-color: #147853;
+    color: #fff;
+    width: 100%;
+}
+.btn-back:hover{
+    background-color: #199c6b;
+    color: #fff;
+}
+.emptyTable{
+    padding-top: 6px;
+    font-style: italic;
+}
+p{
+    margin-bottom: 0;
+}
+.hideElement{
+    display: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.bold{
+    font-weight: 600;
+}

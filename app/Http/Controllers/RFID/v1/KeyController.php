@@ -5,6 +5,8 @@ namespace App\Http\Controllers\RFID\v1;
 use App\Http\Resources\KeyResource;
 use App\Http\Resources\PersonResource;
 use App\Models\RFID\v1\Key;
+use App\Models\RFID\v1\Key_state;
+use App\Models\RFID\v1\Key_type;
 use App\Models\RFID\v1\Person;
 use Illuminate\Http\Request;
 
@@ -25,10 +27,13 @@ class KeyController extends Controller
         // !!! vrati mi osobu aj s jeho klucami
         //$person = Person::where('person_id',$id)->with('keys')->first();
 
-        $keys = Key::all();
+        $keys = Key::with('person', 'keyType', 'keyState')->get();
 //        var_dump($keys);
 //        return response()->json($keys,200);
-        return view('keys.keys', $keys);
+        $data = [
+            'keys' => $keys
+        ];
+        return view('keys.keys', $data);
     }
 
     /**
@@ -72,10 +77,17 @@ class KeyController extends Controller
      */
     public function get($key_id)
     {
-        $key = Key::find($key_id);
-        //$key = Key::where([['person_id',$person_id],['key_id',$key_id]])->first();
-        return response()->json($key,200);
-        //return $key;
+        $key = Key::with('person', 'keyType', 'keyState')->where('key_id', $key_id)->first();
+        $key_types = Key_type::all();
+        $key_states = Key_state::all();
+        $people = Person::all();
+        $data = [
+            'key' => $key,
+            'key_types' => $key_types,
+            'key_states' => $key_states,
+            'people' => $people
+        ];
+        return view('keys.key', $data);
     }
 
     /**

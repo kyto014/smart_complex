@@ -16,8 +16,8 @@ body{
 li{
     list-style-type:none;
     display: inline-block;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 .logo, .options{
     display: inline-block;
@@ -91,26 +91,14 @@ a:hover{
     text-align: left;
     font-size: 13px;
 }
-/*.container.content{*/
-    /*background-color: #f4f4f4;*/
-    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
-    /*border-radius: 4px;*/
-/*}*/
-/*table.table{*/
-    /*margin-top: 15px;*/
-    /*border-radius: 10px;*/
-    /*text-align: left;*/
-/*}*/
-/*.table .thead-color th{*/
-    /*color: #fff;*/
-    /*background-color: #21362f;*/
-    /*border-color: #32383e;*/
-/*}*/
-/*.table thead tr th,*/
-/*.table tbody tr td{*/
-    /*padding-left: 15px;*/
-/*}*/
-/*table.table tbody tr:hover{*/
-    /*background-color: #0e543a;*/
-    /*color: #fff;*/
-/*}*/
+.variable-content{
+    background-color: #f4f4f4;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 4px;
+    padding: 20px;
+}
+.mainTitle{
+    padding-left: 15px;
+    font-size: 30px;
+    color: #147853;
+}

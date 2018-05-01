@@ -20,8 +20,8 @@ class ProfileController extends Controller
         //$profiles = Person::where('person_id',$id)->profiles;
         $profiles = Profile::all();
                     //Person::where('person_id',$id)->with('profiles')->first();
-        //return $profiles;
-        return view('profiles.profiles', $profiles);
+        $data = ['profiles' => $profiles];
+        return view('profiles.profiles', $data);
     }
 
     /**
@@ -114,7 +114,7 @@ class ProfileController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function destroy($profile_id)
+    public function delete($profile_id)
     {
         $profile = Profile::find($profile_id);
         if ($profile->accesses){

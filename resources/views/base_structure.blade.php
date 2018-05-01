@@ -12,7 +12,7 @@
         <link href="{{ URL::asset('css/bootstrap.css') }}" rel="stylesheet">
         <link href="{{ URL::asset('css/additional_style.css') }}" rel="stylesheet">
         @yield('additional_headers')
-        <title>Smart base</title>
+        <title>Smart complex</title>
     </head>
     <body>
         <div class="jumbotron">

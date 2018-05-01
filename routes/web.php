@@ -19,6 +19,7 @@ Route::get('/', 'App\Http\Controllers\Controller@welcomePage');
 Route::get('/people', 'App\Http\Controllers\RFID\v1\PersonController@getAll'); //vlastny
 Route::get('/people/{person_id}','App\Http\Controllers\RFID\v1\PersonController@get'); //vlastny > profil cloveka + jeho kluce + jeho profily + druhe faktory
 Route::post('/people', 'App\Http\Controllers\RFID\v1\PersonController@create'); //vlastny > toto je submit formulara pre pridanie pridanie usera > napr button na /people
+Route::get('/people-create', 'App\Http\Controllers\RFID\v1\PersonController@createPerson');
 Route::post('people/{person_id}', 'App\Http\Controllers\RFID\v1\PersonController@update'); //NIE vlastny > toto je kam ide submit button pre /people/{person_id}
 Route::delete('people/{person_id}','App\Http\Controllers\RFID\v1\PersonController@delete'); //NIE vlastny > v tabulke /people bude delete btn a tu ho presmeruje (treba alert ze are zou sure?)
 

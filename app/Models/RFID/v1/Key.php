@@ -33,7 +33,7 @@ class Key extends Model
      * @var array
      */
     protected $fillable = [
-        'key_type_id','key_state_id','person_id'
+        'key_type_id','key_state_id','person_id','key_string'
     ];
 
 
