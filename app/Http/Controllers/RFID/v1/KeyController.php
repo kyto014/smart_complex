@@ -96,18 +96,7 @@ class KeyController extends Controller
         ];
         return view('keys.key', $data);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Key  $key
-     * @return \Illuminate\Http\Response
-     */
-//    public function edit(Request $request)
-//    {
-//        return print_r($request);
-//    }
-
+    
     /**
      * Update the specified resource in storage.
      *
