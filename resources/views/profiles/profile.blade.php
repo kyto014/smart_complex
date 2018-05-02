@@ -22,22 +22,23 @@
     <div class="form-group row">
         <label for="staticPerson" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
-            <h1 class="capitalize mainTitle" id="staticPerson">pridaj profil</h1>
+            <h1 class="capitalize mainTitle" id="staticPerson">edituj profil</h1>
         </div>
     </div>
     <hr>
-    <form id="profile-form" data-href="{{ url('/profiles') }}" method="post">
+    {{--{{$profile}}--}}
+    <form id="profile-form" data-href="{{ url('/profiles') }}/{{$profile->profile_id}}" method="post">
         {{ csrf_field() }}
         <div class="form-group row">
             <label for="staticName" class="col-sm-2 col-form-label">*názov</label>
             <div class="col-sm-4">
-                <input type="text" name="name" class="form-control" id="staticName" value="">
+                <input type="text" name="name" class="form-control" id="staticName" value="{{$profile->profile_name}}">
             </div>
         </div>
         <div class="form-group row">
             <label for="staticDesc" class="col-sm-2 col-form-label">*popis</label>
             <div class="col-sm-4">
-                <input type="text" name="desc" class="form-control" id="staticDesc" value="">
+                <input type="text" name="desc" class="form-control" id="staticDesc" value="{{$profile->description}}">
             </div>
         </div>
         <div class="form-group row">
@@ -45,7 +46,7 @@
             <div class="col-sm-4 form-group">
                 <select name="accesses[]" class="selectpicker form-control" data-live-search="true" data-size="5" id="staticAccesses" multiple>
                     @foreach($accesses as $a)
-                        <option value="{{$a->access_id}}" >{{$a->access_name}}</option>
+                        <option value="{{$a->access_id}}" @if($a->access_id == $profile->profile_id) selected @endif>{{$a->access_name}}</option>
                     @endforeach
                 </select>
             </div>

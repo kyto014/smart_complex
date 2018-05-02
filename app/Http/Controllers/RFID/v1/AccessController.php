@@ -19,7 +19,6 @@ class AccessController extends Controller
     public function getAll()
     {
         $accesses = Access::with('door','access')->get();
-//        print_r($accesses);
        $data = [
            "accesses" => $accesses
        ];
@@ -31,9 +30,16 @@ class AccessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createAccess()
     {
-        //
+        $accesses = Access::all();
+        $doors = Door::all();
+//        $accesses = Access::with('door','access')->get();
+        $data = [
+            "accesses" => $accesses,
+            "doors" => $doors
+        ];
+        return view('accesses.addAccess', $data);
     }
 
     /**
@@ -42,15 +48,22 @@ class AccessController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function create(Request $request)
     {
-        $access = new Access();
-        $access->access_name = $request->input('access_name');
-        $access->time_from = $request->input('time_from');
-        $access->time_to = $request->input('time_to');
-        $access->door_id = $request->input('door_id');
-        $access->next_access_id = $request->input('next_access_id');
-        $access->save();
+        if(strtotime($request->input('access_time_from')) < strtotime($request->input('access_time_to'))){
+            $access = new Access();
+            $access->access_name = $request->input('access_name');
+            $access->time_from = str_replace("T", " ", $request->input('access_time_from')).":00";
+            $access->time_to = str_replace("T", " ", $request->input('access_time_to')).":00";
+            $access->door_id = $request->input('door_id');
+            if($request->input('next_access_id') != "") {
+                $access->next_access_id = $request->input('next_access_id');
+            }
+            $access->save();
+
+            return response()->json($access,201);
+        }
+        return response()->json(400);
     }
 
     /**
@@ -61,20 +74,20 @@ class AccessController extends Controller
      */
     public function get($access_id)
     {
-        $access = Access::find($access_id);
-        return $access;
+        $access = Access::with('door', 'access')->where('access_id', $access_id)->first();
+        $access->time_from = str_replace(" ", "T", $access->time_from);
+        $access->time_to = str_replace(" ", "T", $access->time_to);
+        $accesses = Access::all();
+        $doors = Door::all();
+        $data = [
+            "accesses" => $accesses,
+            "doors" => $doors,
+            "access" => $access
+        ];
+//        print_r($access->time_from);
+        return view('accesses.access', $data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Access  $access
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Access $access)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -85,15 +98,21 @@ class AccessController extends Controller
      */
     public function update(Request $request, $access_id)
     {
-        $access = Access::where('access_id',$access_id)->first();
-        if ($access){
+        if(strtotime($request->input('access_time_from')) < strtotime($request->input('access_time_to'))){
+            $access = Access::where('access_id',$access_id)->first();
             $access->access_name = $request->input('access_name');
-            $access->time_from = $request->input('time_from');
-            $access->time_to = $request->input('time_to');
+            $access->time_from = str_replace("T", " ", $request->input('access_time_from')).":00";
+            $access->time_to = str_replace("T", " ", $request->input('access_time_to')).":00";
             $access->door_id = $request->input('door_id');
-            $access->next_access_id = $request->input('next_access_id');
+            if($request->input('next_access_id') != "") {
+                $access->next_access_id = $request->input('next_access_id');
+            }
             $access->save();
+
+            return response()->json($access,200);
         }
+        return response()->json(400);
+
     }
 
     /**

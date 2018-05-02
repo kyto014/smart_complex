@@ -28,7 +28,7 @@
     </script>
     <div >
     <h1 class="mainTitle">ľudia</h1>
-    <a class="btn btn-add" href="{{ url('/people-create') }}">pridaj osobu</a>
+    <a class="btn btn-add" href="{{ url('/people-create') }}">pridať osobu</a>
         </div>
     <hr style="margin-top: 60px;">
     <div class="table-responsive">

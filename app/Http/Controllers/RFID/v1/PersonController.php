@@ -136,12 +136,12 @@ class PersonController extends Controller
             $person->keys()->delete();
         }
 
-        if ($request->input('facts') != null) {
-            $factors = $person->secondFactors()->whereIn('second_factor.second_factor_id', $request->input('facts'))->get();
-            $person->secondFactors()->sync($factors);
-        } else {
-            $person->secondFactors()->detach();
-        }
+//        if ($request->input('facts') != null) {
+//            $factors = $person->secondFactors()->whereIn('second_factor.second_factor_id', $request->input('facts'))->get();
+//            $person->secondFactors()->sync($factors);
+//        } else {
+//            $person->secondFactors()->detach();
+//        }
 
         if ($request->input('profiles') != null) {
             $profiles = $person->profiles()->whereIn('profile.profile_id', $request->input('profiles'))->get();

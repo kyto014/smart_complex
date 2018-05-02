@@ -22,28 +22,28 @@
     <div class="form-group row">
         <label for="staticPerson" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
-            <h1 class="capitalize mainTitle" id="staticPerson">pridaj prístup</h1>
+            <h1 class="capitalize mainTitle" id="staticPerson">edituj prístup</h1>
         </div>
     </div>
     <hr>
-    <form id="access-form" data-href="{{ url('/access') }}" method="post">
+    <form id="access-form" data-href="{{ url('/accesses') }}/{{$access->access_id}}" method="post">
         {{ csrf_field() }}
         <div class="form-group row">
             <label for="accessName" class="col-sm-2 col-form-label" >*názov</label>
             <div class="col-sm-4">
-                <input type="text" name="access_name" class="form-control" id="accessName" value="" required>
+                <input type="text" name="access_name" class="form-control" id="accessName" value="{{$access->access_name}}" required>
             </div>
         </div>
         <div class="form-group row">
             <label for="accessFrom" class="col-sm-2 col-form-label">*od </label>
             <div class="col-sm-4" >
-                <input type="datetime-local" name="access_time_from" class="form-control" id="accessFrom" value="" required>
+                <input type="datetime-local" name="access_time_from" class="form-control" id="accessFrom" value="{{$access->time_from}}" required>
             </div>
         </div>
         <div class="form-group row">
             <label for="accessTo" class="col-sm-2 col-form-label">*do </label>
             <div class="col-sm-4" >
-                <input type="datetime-local" name="access_time_to" class="form-control" id="accessTo" value="" required>
+                <input type="datetime-local" name="access_time_to" class="form-control" id="accessTo" value="{{$access->time_to}}" required>
             </div>
         </div>
         <div class="form-group row">
@@ -51,7 +51,7 @@
             <div class="col-sm-4 form-group">
                 <select name="door_id" class="selectpicker form-control" data-live-search="true" data-size="5" id="staticDoor" required>
                     @foreach($doors as $d)
-                        <option value="{{$d->door_id}}" >{{$d->door_name}}</option>
+                        <option value="{{$d->door_id}}" @if($d->door_id == $access->door_id) selected @endif>{{$d->door_name}}</option>
                     @endforeach
                 </select>
             </div>
@@ -59,10 +59,9 @@
         <div class="form-group row">
             <label for="staticNextAccess" class="col-sm-2 col-form-label">*nadväzujúci prístup</label>
             <div class="col-sm-4 form-group">
-                <select name="next_access_id" class="selectpicker form-control" data-live-search="true" data-size="5" id="staticNextAccess">
-                    <option value="" style="text-align: center">--</option>
+                <select name="next_access_id" class="selectpicker form-control" data-live-search="true" data-size="5" id="staticNextAccess" required>
                     @foreach($accesses as $a)
-                        <option value="{{$a->access_id}}" >{{$a->access_name}}</option>
+                        <option value="{{$a->access_id}}" @if($a->access_id == $access->next_access_id) selected @endif>{{$a->access_name}}</option>
                     @endforeach
                 </select>
             </div>

@@ -13,7 +13,7 @@ body{
 .navbarDiv{
     text-align: right;
 }
-li{
+.navbarDiv li{
     list-style-type:none;
     display: inline-block;
     margin-left: 15px;
@@ -21,6 +21,10 @@ li{
 }
 .logo, .options{
     display: inline-block;
+}
+@font-face {
+    font-family: Vanadine;
+    src: url(../fonts/VanadineRegular.ttf);
 }
 .logo{
     float:left;
@@ -101,4 +105,20 @@ a:hover{
     padding-left: 15px;
     font-size: 30px;
     color: #147853;
+}
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-right-style: initial;
+    border-bottom-style: initial;
+    border-left-style: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-width: 1px 0px 0px;
+    border-image: initial;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    box-sizing: content-box;
+    height: 0px;
+    overflow: visible;
 }

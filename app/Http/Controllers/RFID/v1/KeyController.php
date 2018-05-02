@@ -41,9 +41,17 @@ class KeyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createKey()
     {
-        //
+        $key_types = Key_type::all();
+        $key_states = Key_state::all();
+        $people = Person::all();
+        $data = [
+            'key_types' => $key_types,
+            'key_states' => $key_states,
+            'people' => $people
+        ];
+        return view('keys.addKey', $data);
     }
 
     /**
@@ -52,18 +60,17 @@ class KeyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $key_id)
+    public function create(Request $request)
     {
-        $person = Person::where('person_id',$key_id)->first();
+        $person = Person::where('person_id',$request->input('person_id'))->first();
         $key = new Key();
         $key->key_type_id = $request->input('key_type_id');
         $key->key_state_id = $request->input('key_state_id');
         $key->person_id = $request->input('person_id');
-        $key->key_string = Hash::make($request->input('key_string'));
+        $key->key_string = $request->input('key_value');
         $person->keys()->save($key);
 
         return response()->json($key,201);
-
         //to delete keys
         // $person->keys()->delete();
         //$person->delete();
@@ -96,10 +103,10 @@ class KeyController extends Controller
      * @param  \App\Models\Key  $key
      * @return \Illuminate\Http\Response
      */
-    public function edit(Key $key)
-    {
-        //
-    }
+//    public function edit(Request $request)
+//    {
+//        return print_r($request);
+//    }
 
     /**
      * Update the specified resource in storage.
@@ -108,14 +115,15 @@ class KeyController extends Controller
      * @param  \App\Models\Key  $key
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $person_id, $key_id)
+    public function update(Request $request, $key_id)
     {
-        $key = Key::where([['person_id',$person_id],['key_id',$key_id]])->first();
-        if ($key != null){
+        //$person->person_type_id = $request->input('person_type_id');
+        $key = Key::where([['key_id',$key_id]])->first();
+        if ($key_id != null){
             $key->key_type_id = $request->input('key_type_id');
             $key->key_state_id = $request->input('key_state_id');
             $key->person_id = $request->input('person_id');
-            $key->key_string = Hash::make($request->input('key_string'));
+            $key->key_string = $request->input('key_value');
             $key->save();
         }
         return response()->json($key, 200);

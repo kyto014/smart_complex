@@ -25,6 +25,7 @@ Route::delete('people/{person_id}','App\Http\Controllers\RFID\v1\PersonControlle
 
 Route::get('/keys', 'App\Http\Controllers\RFID\v1\KeyController@getAll');
 Route::get('/keys/{key_id}','App\Http\Controllers\RFID\v1\KeyController@get');
+Route::get('/key-create', 'App\Http\Controllers\RFID\v1\KeyController@createKey');
 Route::post('/keys', 'App\Http\Controllers\RFID\v1\KeyController@create');
 Route::post('/keys/{key_id}', 'App\Http\Controllers\RFID\v1\KeyController@update');
 Route::delete('/keys/{key_id}','App\Http\Controllers\RFID\v1\KeyController@delete');
@@ -32,11 +33,13 @@ Route::delete('/keys/{key_id}','App\Http\Controllers\RFID\v1\KeyController@delet
 Route::get('/profiles', 'App\Http\Controllers\RFID\v1\ProfileController@getAll');
 Route::get('/profiles/{profile_id}','App\Http\Controllers\RFID\v1\ProfileController@get');
 Route::post('/profiles', 'App\Http\Controllers\RFID\v1\ProfileController@create');
+Route::get('/profile-create', 'App\Http\Controllers\RFID\v1\ProfileController@createProfile');
 Route::post('/profiles/{profile_id}', 'App\Http\Controllers\RFID\v1\ProfileController@update');
 Route::delete('/profiles/{profile_id}','App\Http\Controllers\RFID\v1\ProfileController@delete');
 
 Route::get('/accesses', 'App\Http\Controllers\RFID\v1\AccessController@getAll');
 Route::get('/accesses/{access_id}','App\Http\Controllers\RFID\v1\AccessController@get');
-Route::post('/accesses', 'App\Http\Controllers\RFID\v1\AccessController@create');
+Route::post('/access', 'App\Http\Controllers\RFID\v1\AccessController@create');
+Route::get('/access-create','App\Http\Controllers\RFID\v1\AccessController@createAccess');
 Route::post('/accesses/{access_id}', 'App\Http\Controllers\RFID\v1\AccessController@update');
 Route::delete('/accesses/{access_id}','App\Http\Controllers\RFID\v1\AccessController@delete');

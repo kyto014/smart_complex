@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\RFID\v1;
 
+use App\Models\RFID\v1\Access;
 use App\Models\RFID\v1\Person;
 use App\Models\RFID\v1\Profile;
 use Illuminate\Http\Request;
@@ -29,9 +30,15 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createProfile()
     {
-        //
+        $profiles = Profile::all();
+        $accesses = Access::with('door','access')->get();
+        $data =[
+            'profiles' => $profiles,
+            'accesses' => $accesses
+        ];
+        return view('profiles.addProfile', $data);
     }
 
     /**
@@ -40,13 +47,21 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function create(Request $request)
     {
         //store new profile
         $profile = new Profile();
-        $profile->profile_name = $request->input('profile_name');
-        $profile->description = $request->input('description');
-        $profile->save();
+        $profile->profile_name = $request->input('name');
+        if($request->input('desc') != "") {
+            $profile->description = $request->input('desc');
+        }
+
+        $profile = $profile->save();
+        if ($request->input('accesses') != null) {
+//            $person->profiles()->sync($profiles);
+            $profile->accesses()->sync($request->input('accesses'));
+        }
+        return response()->json($profile, 201);
 
         // store profile for person
         //$person = Person::find($person_id);
@@ -76,20 +91,16 @@ class ProfileController extends Controller
      */
     public function get($profile_id)
     {
-        $profile = Profile::find($profile_id);
-        return $profile;
+//        $accesses = Access::with('door','access')->get();
+        $profile = Profile::with('accesses')->where('profile_id', $profile_id)->first();
+        $accesses = Access::all();
+        $data =[
+            'profile' => $profile,
+            'accesses' => $accesses
+        ];
+        return view('profiles.profile', $data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Profile $profile)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -102,10 +113,15 @@ class ProfileController extends Controller
     {
         $profile = Profile::find($profile_id);
         if ($profile){
-            $profile->profile_name = $request->input('profile_name');
-            $profile->description = $request->input('description');
+            $profile->profile_name = $request->input('name');
+            $profile->description = $request->input('desc');
             $profile->save();
+//            $profiles = $person->profiles()->whereIn('profile.profile_id', $request->input('profiles'))->get();
+            $accesses = $profile->accesses()->whereIn('access.access_id', $request->input('accesses'))->get();
+            $profile->accesses()->sync($accesses);
+            return response()->json($profile, 200);
         }
+        return response()->json(400);
     }
 
     /**

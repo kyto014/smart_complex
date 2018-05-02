@@ -28,7 +28,7 @@
     </script>
     <div >
         <h1 class="mainTitle">profily</h1>
-        <a class="btn btn-add" href="{{ url('/people-create') }}">pridaj profil</a>
+        <a class="btn btn-add" href="{{ url('/profile-create') }}">pridaj profil</a>
     </div>
     <hr style="margin-top: 60px;">
     <div class="table-responsive">
@@ -43,9 +43,9 @@
             </thead>
             <tbody>
             @foreach($profiles as $p)
-                <tr class="page-table-row" data-href="{{ url('/people') }}/{{ $p->profile_id }}">
+                <tr class="page-table-row" data-href="{{ url('/profiles') }}/{{ $p->profile_id }}">
                     {{--<td>{{$p->person_id}}</td>--}}
-                    <td class="page-table-td"><i class="fa fa-search-plus" ></i>{{$p->profile_name}}</td>
+                    <td class="page-table-td capitalize"><i class="fa fa-search-plus" ></i>{{$p->profile_name}}</td>
                     <td class="page-table-td page-table-2">{{$p->description}}</td>
                     <td class="col-delete" >
                         <a data-href="{{ url('/profiles') }}/{{ $p->profile_id }}" data-content="{{$p->profile_name}}" class="deleteProfile" data-toggle="modal" data-target="#continue-modal" href="" style="width: 100%"><i class="fa fa-trash" aria-hidden="true"></i></a>
