@@ -58,6 +58,7 @@ class PersonController extends Controller
             if($request->input('key_string') != ""){
                 //vytvor kluce ku osobe
                 //urobit save pre vsetky kluce
+
                 $person = Person::where('person_id',$person_id)->first();
                 $key = new Key();
                 $key->key_type_id = $request->input('key');
@@ -65,6 +66,7 @@ class PersonController extends Controller
                 $key->person_id = $person_id;
                 $key->key_string = $request->input('key_string');
                 $person->keys()->save($key);
+                AuditLogController::create("Key create", '1', $person_id,'Vytvorenie kluca pre prave vytvoreneho pouzivatela');
 
             }
         }
