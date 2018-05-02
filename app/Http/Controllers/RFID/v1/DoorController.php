@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\RFID\v1;
 
+use App\Http\Controllers\AuditLogController;
 use App\Http\Resources\KeyResource;
 use App\Models\RFID\v1\Door;
 use App\Models\RFID\v1\Key;
@@ -9,11 +10,9 @@ use App\Models\RFID\v1\Person;
 use App\Models\RFID\v1\PersonSecondFactor;
 use App\Models\RFID\v1\SecondFactor;
 use Carbon\Carbon;
-use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
-use League\Flysystem\Config;
 
 class DoorController extends Controller
 {
@@ -97,11 +96,13 @@ class DoorController extends Controller
     {
         $door = Door::where('door_uuid',\request()->get('door_uuid'))->first();
         $key_string = Key::where('key_string',\request()->get('key_string'))->first();
+
         // pokial sa jedna z veci nenachadza v databaze, vrati sa resultCode 0
         if ($door and $key_string){
             $key = new KeyResource($key_string);
             //chybova hlaska: neznamy kluc
             $person = Person::with('profiles.accesses')->where('person_id',$key->person_id)->first();
+            $person_id = $person->person_id;
             //chybova hlaska: uzivatel nema ziadne profily
             $accesses = array();
 
@@ -140,13 +141,16 @@ class DoorController extends Controller
                             }
                         }
                     } else if ($second_factor_type_id == config('variables.second_factor_type.none')) {// dvere nevyzaduju druhy faktor
+                        AuditLogController::create("Prítup do objektu", config('variables.operation_code.access_allowed'), $person_id,'No second factor authentication needed.');
                         return response()->json(['operation_code' => config('variables.operation_code.access_allowed')], 200);
                     }
+                    AuditLogController::create("Prítup do objektu", $second_factor_type_id, $person_id,'Second factor authentication needed.');
                     return response()->json(['operation_code' => $second_factor_type_id], 200);
                 }
             }
         } else{
             $resultCode = config('variables.operation_code.access_denied');
+            AuditLogController::create("Prítup do objektu", config('variables.operation_code.access_denied'), '','Parameters were not properly set.');
         }
 
         return response()->json(['operation_code' => $resultCode],200);
@@ -187,6 +191,8 @@ class DoorController extends Controller
                 }
             }
         }
+
+        AuditLogController::create("Prítup do objektu - zadanie druheho faktora", $resultCode, $key->person_id,\request()->get('code'));
         return response()->json(['operation_code' => $resultCode],200);
     }
 }

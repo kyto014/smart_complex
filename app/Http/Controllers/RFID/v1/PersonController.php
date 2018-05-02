@@ -2,25 +2,15 @@
 namespace App\Http\Controllers\RFID\v1;
 
 
-use App\Http\Resources\PersonResource;
-
+use App\Http\Controllers\AuditLogController;
 use App\Models\RFID\v1\Key;
 use App\Models\RFID\v1\Key_type;
 use App\Models\RFID\v1\Person;
 use App\Models\RFID\v1\Person_type;
 use App\Models\RFID\v1\Profile;
 use App\Models\RFID\v1\Role;
-use App\Models\RFID\v1\SecondFactor;
 use App\Models\RFID\v1\SecondFactorType;
-use Barryvdh\Debugbar\LaravelDebugbar;
-use Carbon\Carbon;
-use DebugBar\DebugBar;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\Resource;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 
 class PersonController extends Controller
@@ -58,9 +48,11 @@ class PersonController extends Controller
         $person->surname = $request->input('surname');
         $person->email = $request->input('email');
 //        $person->password = $request->input('password');
-        $person->save();
+        $result = $person->save();
 
         $person_id = $person->person_id;
+
+        AuditLogController::create("Person create", $result, $person_id,'');
 
         if ($request->input('key') != ""){
             if($request->input('key_string') != ""){
@@ -73,6 +65,7 @@ class PersonController extends Controller
                 $key->person_id = $person_id;
                 $key->key_string = $request->input('key_string');
                 $person->keys()->save($key);
+
             }
         }
 

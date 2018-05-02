@@ -16,7 +16,7 @@ return[
     ],
 
     'second_factor_type' => [
-        'none' => 0,
+        'none' => Null,
         'password' => 2,
         'code' => 3
     ]

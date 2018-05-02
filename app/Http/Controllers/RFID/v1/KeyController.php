@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\RFID\v1;
 
-use App\Http\Resources\KeyResource;
-use App\Http\Resources\PersonResource;
 use App\Models\RFID\v1\Key;
 use App\Models\RFID\v1\Key_state;
 use App\Models\RFID\v1\Key_type;
@@ -69,12 +67,6 @@ class KeyController extends Controller
         //$person->delete();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Key  $key
-     * @return \Illuminate\Http\Response
-     */
     public function get($key_id)
     {
         $key = Key::with('person', 'keyType', 'keyState')->where('key_id', $key_id)->first();
@@ -90,24 +82,13 @@ class KeyController extends Controller
         return view('keys.key', $data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Key  $key
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Key $key)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Key  $key
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $person_id, $key_id)
     {
         $key = Key::where([['person_id',$person_id],['key_id',$key_id]])->first();
@@ -121,12 +102,7 @@ class KeyController extends Controller
         return response()->json($key, 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Key  $key
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($person_id, $key_id)
     {
         $key = Key::where([['person_id',$person_id],['key_id',$key_id]])->first();

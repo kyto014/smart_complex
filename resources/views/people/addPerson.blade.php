@@ -60,7 +60,7 @@
         <div class="form-group row">
             <label for="selectProfile" class="col-sm-2 col-form-label">profily</label>
             <div class="col-sm-4">
-                <select name="profiles[]" class="form-control" id="selectProfile" multiple size="3">
+                <select name="profiles[]" class="form-control" id="selectProfile">
                     <option value="">--</option>
                     @foreach($profiles as $p)
                         <option value="{{$p->profile_id}}" >{{$p->profile_name}}</option>
