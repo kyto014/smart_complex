@@ -96,7 +96,7 @@ class KeyController extends Controller
         ];
         return view('keys.key', $data);
     }
-    
+
     /**
      * Update the specified resource in storage.
      *

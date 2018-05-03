@@ -12,7 +12,15 @@
 @section('content')
     <script>
         $('.selectpicker').selectpicker();
+        {{--var values = {!! json_encode($profile->accesses) !!};--}}
+        {{--ids = [];--}}
+        {{--for (var i = 0, len = values.length; i < len; i++) {--}}
+            {{--ids.push(values[i]['access_id']);--}}
+        {{--}--}}
 
+
+        //        $('#staticAccesses').val(ids).trigger('change');
+//        console.log(ids);
     </script>
     <div class="form-group row">
         <div class="col-sm-2 col-form-label">
@@ -36,21 +44,31 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="staticDesc" class="col-sm-2 col-form-label">*popis</label>
+            <label for="staticDesc" class="col-sm-2 col-form-label">popis</label>
             <div class="col-sm-4">
                 <input type="text" name="desc" class="form-control" id="staticDesc" value="{{$profile->description}}">
             </div>
         </div>
         <div class="form-group row">
-            <label for="staticAccesses" class="col-sm-2 col-form-label">*prístupy</label>
+            <label for="staticAccesses" class="col-sm-2 col-form-label">prístupy</label>
             <div class="col-sm-4 form-group">
                 <select name="accesses[]" class="selectpicker form-control" data-live-search="true" data-size="5" id="staticAccesses" multiple>
                     @foreach($accesses as $a)
-                        <option value="{{$a->access_id}}" @if($a->access_id == $profile->profile_id) selected @endif>{{$a->access_name}}</option>
+                        @if(count($profile->accesses) != 0)
+                        @foreach($profile->accesses as $pa)
+                        <option value="{{$a->access_id}}" @if($a->access_id == $pa['access_id']) selected @endif>{{$a->access_name}}</option>
+                            @endforeach
+                        @else
+                            <option value="{{$a->access_id}}" >{{$a->access_name}}</option>
+                        @endif
+
                     @endforeach
                 </select>
             </div>
         </div>
+        {{--@foreach($profile->accesses as $a)--}}
+            {{--{{$a}}--}}
+        {{--@endforeach--}}
         <div class="form-group row">
             <div style="margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;width: 20%">
                 <button type="submit" class="btn save-btn" style="width: 40%; margin-right: 5px;">Uložiť</button>

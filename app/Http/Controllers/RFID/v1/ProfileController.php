@@ -56,11 +56,13 @@ class ProfileController extends Controller
             $profile->description = $request->input('desc');
         }
 
-        $profile = $profile->save();
+        $profile->save();
         if ($request->input('accesses') != null) {
-//            $person->profiles()->sync($profiles);
-            $profile->accesses()->sync($request->input('accesses'));
+            $profile = Profile::find($profile->profile_id);
+            $accesses = Access::whereIn('access.access_id', $request->input('accesses'))->get();
+            $profile->accesses()->attach($accesses);
         }
+
         return response()->json($profile, 201);
 
         // store profile for person
@@ -94,6 +96,7 @@ class ProfileController extends Controller
 //        $accesses = Access::with('door','access')->get();
         $profile = Profile::with('accesses')->where('profile_id', $profile_id)->first();
         $accesses = Access::all();
+
         $data =[
             'profile' => $profile,
             'accesses' => $accesses
@@ -116,10 +119,11 @@ class ProfileController extends Controller
             $profile->profile_name = $request->input('name');
             $profile->description = $request->input('desc');
             $profile->save();
-//            $profiles = $person->profiles()->whereIn('profile.profile_id', $request->input('profiles'))->get();
-            $accesses = $profile->accesses()->whereIn('access.access_id', $request->input('accesses'))->get();
-            $profile->accesses()->sync($accesses);
+            //$accesses = Access::whereIn('access.access_id', $request->input('accesses'))->get();
+            $profile->accesses()->sync($request->input('accesses'));
             return response()->json($profile, 200);
+//            $profile = Profile::with('accesses')->where('profile_id', $profile_id)->first();
+//            return $profile;
         }
         return response()->json(400);
     }
