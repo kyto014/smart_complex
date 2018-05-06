@@ -1,26 +1,19 @@
 .page-item.active .page-link{
-    background-color: #147853;
-    border-color:#147853;
+    background-color: #698895;
+    border-color:#698895;
 }
-.sorting_asc{
-    margin-top: -10px;
+.page-item.active .page-link :hover{
+    background-color: #698895;
+    border-color: #698895;
 }
+/*.sorting_asc{*/
+    /*margin-top: -10px;*/
+/*}*/
 li{
     margin-left: 4px;
     margin-right: 4px;
 }
-table tbody tr td{
-    padding-left: 10px;
-}
-table thead tr th {
-    padding-left: 35px;
-}
-.page-table-th-2{
-    padding-left: 20px;
-}
-.page-table-th-3{
-    padding-left: 5px !important;
-}
+
 .fa.fa-search-plus{
     padding-left: 5px;
     padding-right: 10px;
@@ -29,31 +22,31 @@ table thead tr th {
     border-radius: 4px;
 }
 .page-table-thead{
-    background-color: #147853;
-    color:white;
+    /*background-color: #cacc77;*/
+    /*color:white;*/
 }
 .page-table-row:hover{
     cursor: pointer;
-    background-color: #0e543a;
+    background-color: #698895;
     color:#fff;
 }
-table.dataTable thead .sorting:before, table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:before, table.dataTable thead .sorting_desc_disabled:after{
-    bottom: 0;
-}
+
 .capitalize{
     text-transform: capitalize;
 }
 .page-link{
-    color: #6c757d;
+    color: #698895;
 }
 .page-table-td {
     padding: 5px;
 }
-.page-table-td.page-table-2{
-    padding-left: 20px;
-}
-.capitalize.mainTitle{
+
+.mainTitle{
     padding-left: 0;
+    /*text-transform: uppercase;*/
+    margin-top: 5px;
+    margin-left: 20px;
+    color: #596f65;
 }
 table tbody tr td{
     padding-right: 15px;
@@ -72,18 +65,22 @@ table tbody tr td{
     color: #000;
 }
 .fa.fa-trash:hover{
-    color:white;
+    color: #fff;
 }
 .btn-add{
-    border-color:#147853;
-    background-color: #147853;
-    color: #fff;
+    transition: background-color 0.5s;
     float: right;
+    margin-top: 5px;
+    width: 150px;
 }
 .mainTitle{
     float: left;
+    /*padding-left: 15px;*/
+    font-size: 25px;
+    color: #555;
+    /*font-weight: bold;*/
+    text-transform: uppercase;
 }
-.btn-add:hover{
-    background-color: #199c6b;
-    color: #fff;
+.bold{
+    font-weight: bold;
 }

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'App\Http\Controllers\Controller@welcomePage');
 
-Route::get('/people', 'App\Http\Controllers\RFID\v1\PersonController@getAll'); //vlastny
+Route::get('/people', 'App\Http\Controllers\RFID\v1\PersonController@getAll')->name('people'); //vlastny
 Route::get('/people/{person_id}','App\Http\Controllers\RFID\v1\PersonController@get'); //vlastny > profil cloveka + jeho kluce + jeho profily + druhe faktory
 Route::post('/people', 'App\Http\Controllers\RFID\v1\PersonController@create'); //vlastny > toto je submit formulara pre pridanie pridanie usera > napr button na /people
 Route::get('/people-create', 'App\Http\Controllers\RFID\v1\PersonController@createPerson');

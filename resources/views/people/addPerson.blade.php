@@ -7,13 +7,10 @@
 @section('content')
     <div class="form-group row">
         <div class="col-sm-2 col-form-label">
-            <a href="{{ url('/people') }}" class="btn btn-back"> Späť </a>
+            <a href="{{ url('/people') }}" class="btn btn-back cancel-btn"> Späť </a>
         </div>
-    </div>
-    <div class="form-group row">
-        <label for="staticPerson" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
-            <h1 class="capitalize mainTitle" id="staticPerson">pridaj osobu</h1>
+            <h1 class="mainTitle" id="staticPerson">pridaj osobu</h1>
         </div>
     </div>
     <hr>
@@ -40,7 +37,7 @@
         <div class="form-group row">
             <label for="staticPersonType" class="col-sm-2 col-form-label">*typ osoby</label>
             <div class="col-sm-4">
-                <select name="person_type_id" class="form-control" id="staticPersonType">
+                <select name="person_type_id" class="form-control" id="staticPersonType" required>
                     @foreach($types as $t)
                         <option name="person_type_id" value="{{$t->person_type_id}}" >{{$t->name}}</option>
                     @endforeach
@@ -60,8 +57,8 @@
         <div class="form-group row">
             <label for="selectProfile" class="col-sm-2 col-form-label">profily</label>
             <div class="col-sm-4">
-                <select name="profiles[]" class="form-control" id="selectProfile">
-                    <option value="">--</option>
+                <select name="profiles[]" class="form-control" id="selectProfile" >
+                    <option value="" >--</option>
                     @foreach($profiles as $p)
                         <option value="{{$p->profile_id}}" >{{$p->profile_name}}</option>
                     @endforeach
@@ -71,8 +68,8 @@
         <div class="form-group row">
             <label for="staticKeys" class="col-sm-2 col-form-label">kľúče</label>
             <div class="col-sm-4">
-                <select name="key" class="form-control" id="selectKeys">
-                    <option value="">--</option>
+                <select name="key" class="form-control" id="selectKeys" >
+                    <option value="" >--</option>
                     @foreach($keys as $k)
                         <option value="{{$k->key_type_id}}" >{{$k->name}}</option>
                     @endforeach
@@ -84,7 +81,7 @@
         </div>
         <div class="form-group row">
             <div style="margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;width: 20%">
-                <button type="submit" class="btn save-btn" style="width: 40%; margin-right: 5px;">Uložiť</button>
+                <button type="submit" class="btn save-btn btn-success" style="width: 40%; margin-right: 5px;">Uložiť</button>
                 <a class="btn cancel-btn btn-basic" href="{{ url('/people') }}" style="width: 40%">Zrušiť</a>
             </div>
         </div>

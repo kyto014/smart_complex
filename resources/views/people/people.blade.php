@@ -28,11 +28,11 @@
     </script>
     <div >
     <h1 class="mainTitle">ľudia</h1>
-    <a class="btn btn-add" href="{{ url('/people-create') }}">pridať osobu</a>
+    <a class="btn btn-add btn-success" href="{{ url('/people-create') }}">pridať osobu</a>
         </div>
     <hr style="margin-top: 60px;">
     <div class="table-responsive">
-        <table id="page-table" class="display" width="100%">
+        <table id="page-table" class="display table table-bordered dataTable" width="100%">
             <thead class="page-table-thead">
                 <tr>
                     {{--<th>ID</th>--}}
@@ -68,7 +68,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Chcete naozaj zmazať záznam osoby <span id="personName" style="font-weight: 500; text-transform: capitalize"></span>?</p>
+                    <p>Chcete naozaj zmazať záznam osoby <span id="personName" class="bold" style="text-transform: capitalize"></span>?</p>
 
                 </div>
                 <div class="modal-footer">

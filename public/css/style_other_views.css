@@ -1,7 +1,3 @@
-.capitalize.mainTitle{
-    padding-left: 0;
-    text-transform: uppercase;
-}
 .col-sm-2.col-form-label{
     text-align: right;
 }
@@ -50,29 +46,46 @@
     color:#fff;
 }
 .save-btn{
-    border-color:#147853;
-    background-color: #147853;
+    /*background-color: #6b857b;*/
+    /*border-color: #6b857b;*/
+    transition: background-color 0.5s;
+    /*color:white !important;*/
 }
 .save-btn:hover{
-    background-color: #199c6b;
+    /*background-color: #4f665c;*/
+    /*border-color: #4f665c;*/
+    transition: background-color 0.5s;
+    /*color:white;*/
 }
 .cancel-btn{
     background-color: #848484;
     border-color: #848484;
+    transition: background-color 0.5s;
 }
 .cancel-btn:hover{
     background-color: #acacac;
     color: #fff;
+    transition: background-color 0.5s;
+}
+.cancel-btn:active{
+    color: white;
 }
 .btn-back{
-    border-color:#147853;
-    background-color: #147853;
-    color: #fff;
+    /*background-color: #6b857b;*/
+    /*border-color: #6b857b;*/
+    /*color: #fff;*/
     width: 100%;
+    margin-top: 7px;
+    transition: background-color 0.5s;
 }
 .btn-back:hover{
-    background-color: #199c6b;
-    color: #fff;
+    /*background-color: #4f665c;*/
+    /*border-color: #4f665c;*/
+    /*color: #fff;*/
+    transition: background-color 0.5s;
+}
+.btn-back:active{
+    color: white;
 }
 .emptyTable{
     padding-top: 6px;
@@ -88,4 +101,18 @@ p{
 }
 .bold{
     font-weight: 600;
+}
+.mainTitle{
+    font-size: 25px;
+    /*font-weight: bold;*/
+    margin-top: 10px;
+    margin-bottom: 15px;
+    margin-left: 10px;
+    text-transform: uppercase;
+}
+label{
+    padding-top: 5px;
+}
+#labelOsoba{
+    margin-top: 10px;
 }

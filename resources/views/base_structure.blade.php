@@ -10,6 +10,7 @@
         <script src="{{ URL::asset('js/dataTables.min.js') }}" type="text/javascript" ></script>
 
         <link href="{{ URL::asset('css/dataTables.min.css') }}" rel="stylesheet"/>
+        {{--<link href="{{ URL::asset('css/jquery.dataTables.min.css') }}" rel="stylesheet"/>--}}
         <link href="{{ URL::asset('css/bootstrap.css') }}" rel="stylesheet">
         <link href="{{ URL::asset('css/additional_style.css') }}" rel="stylesheet">
 

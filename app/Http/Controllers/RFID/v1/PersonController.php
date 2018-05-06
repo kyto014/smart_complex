@@ -73,12 +73,17 @@ class PersonController extends Controller
 
         if ($request->input('profiles') != null ){
             foreach ($request->input('profiles') as $profile_id){
-                $profile = Profile::find($profile_id);
-                $person->profiles()->attach($profile);
+                if($profile_id != "") {
+                    $profile = Profile::find($profile_id);
+                    $person->profiles()->attach($profile);
+                }
             }
         }
 
-        return response()->json($person,201);
+//        return response()->json($person,201);
+//        return redirect('/people');
+        return redirect()->route('people');
+//        return redirect()->action('PersonController@getAll');
     }
 
     /**

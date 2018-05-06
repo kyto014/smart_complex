@@ -28,11 +28,11 @@
     </script>
     <div >
         <h1 class="mainTitle">prístupy</h1>
-        <a class="btn btn-add" href="{{ url('/access-create') }}">pridaj prístup</a>
+        <a class="btn btn-add btn-success" href="{{ url('/access-create') }}">pridaj prístup</a>
     </div>
     <hr style="margin-top: 60px;">
     <div class="table-responsive">
-        <table id="page-table" class="display" width="100%">
+        <table id="page-table" class="display table table-bordered" width="100%">
             <thead class="page-table-thead">
             <tr>
                 <th class="page-table-th">NÁZOV</th>

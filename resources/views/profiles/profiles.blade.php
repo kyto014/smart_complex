@@ -28,11 +28,11 @@
     </script>
     <div >
         <h1 class="mainTitle">profily</h1>
-        <a class="btn btn-add" href="{{ url('/profile-create') }}">pridaj profil</a>
+        <a class="btn btn-add btn-success" href="{{ url('/profile-create') }}">pridaj profil</a>
     </div>
     <hr style="margin-top: 60px;">
     <div class="table-responsive">
-        <table id="page-table" class="display" width="100%">
+        <table id="page-table" class="display table table-bordered" width="100%">
             <thead class="page-table-thead">
             <tr>
                 {{--<th>ID</th>--}}
