@@ -61,9 +61,10 @@ class AccessController extends Controller
             }
             $access->save();
 
-            return response()->json($access,201);
+//            return response()->json($access,201);
         }
-        return response()->json(400);
+//        return response()->json(400);
+        return redirect('accesses');
     }
 
     /**
@@ -109,10 +110,10 @@ class AccessController extends Controller
             }
             $access->save();
 
-            return response()->json($access,200);
+//            return response()->json($access,200);
         }
-        return response()->json(400);
-
+//        return response()->json(400);
+        return redirect('accesses');
     }
 
     /**

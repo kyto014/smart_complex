@@ -151,8 +151,8 @@ class PersonController extends Controller
             $person->profiles()->detach();
         }
 
-        return response()->json($person,201);
-
+//        return response()->json($person,201);
+        return redirect('people');
     }
 
     /**

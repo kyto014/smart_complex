@@ -87,5 +87,4 @@
         </div>
     </form>
 
-    <script src="{{ URL::asset('js/funcs_other_views.js') }}" type="text/javascript" ></script>
 @stop

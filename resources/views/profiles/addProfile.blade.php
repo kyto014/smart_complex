@@ -24,7 +24,7 @@
         </div>
     </div>
     <hr>
-    <form id="profile-form" data-href="{{ route('/profiles') }}" method="post">
+    <form id="profile-form" action="{{ url('/profiles') }}" method="post">
         {{ csrf_field() }}
         <div class="form-group row">
             <label for="staticName" class="col-sm-2 col-form-label">*názov</label>
@@ -55,5 +55,5 @@
             </div>
         </div>
     </form>
-    <script src="{{ URL::asset('js/additional_table_functions.js') }}" type="text/javascript" ></script>
+    {{--<script src="{{ URL::asset('js/additional_table_functions.js') }}" type="text/javascript" ></script>--}}
 @stop

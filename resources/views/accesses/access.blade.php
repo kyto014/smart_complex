@@ -24,7 +24,7 @@
         </div>
     </div>
     <hr>
-    <form id="access-form" data-href="{{ url('/accesses') }}/{{$access->access_id}}" method="post">
+    <form id="access-form" action="{{ url('/accesses') }}/{{$access->access_id}}" method="post">
         {{ csrf_field() }}
         <div class="form-group row">
             <label for="accessName" class="col-sm-2 col-form-label" >*názov</label>

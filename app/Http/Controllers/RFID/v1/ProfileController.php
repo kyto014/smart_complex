@@ -63,7 +63,8 @@ class ProfileController extends Controller
             $profile->accesses()->attach($accesses);
         }
 
-        return response()->json($profile, 201);
+//        return response()->json($profile, 201);
+        return redirect('profiles');
 
         // store profile for person
         //$person = Person::find($person_id);
@@ -121,11 +122,14 @@ class ProfileController extends Controller
             $profile->save();
             //$accesses = Access::whereIn('access.access_id', $request->input('accesses'))->get();
             $profile->accesses()->sync($request->input('accesses'));
-            return response()->json($profile, 200);
+//            return response()->json($profile, 200);
+//            return redirect('profiles');
 //            $profile = Profile::with('accesses')->where('profile_id', $profile_id)->first();
 //            return $profile;
         }
-        return response()->json(400);
+        return redirect('profiles');
+//        return response()->json(400);
+
     }
 
     /**

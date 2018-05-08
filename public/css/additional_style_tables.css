@@ -1,10 +1,10 @@
 .page-item.active .page-link{
-    background-color: #698895;
-    border-color:#698895;
+    background-color: #8e8e8e;
+    border-color:#8e8e8e;
 }
-.page-item.active .page-link :hover{
-    background-color: #698895;
-    border-color: #698895;
+.page-item.active.page-link :hover{
+    background-color: #555;
+    border-color: #555;
 }
 /*.sorting_asc{*/
     /*margin-top: -10px;*/
@@ -27,7 +27,7 @@ li{
 }
 .page-table-row:hover{
     cursor: pointer;
-    background-color: #698895;
+    background-color: #8e8e8e;
     color:#fff;
 }
 

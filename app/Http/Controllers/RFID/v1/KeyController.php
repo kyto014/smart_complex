@@ -70,8 +70,9 @@ class KeyController extends Controller
         $key->key_string = $request->input('key_value');
         $person->keys()->save($key);
 
-        return response()->json($key,201);
+//        return response()->json($key,201);
         //to delete keys
+        return redirect('keys');
         // $person->keys()->delete();
         //$person->delete();
     }
@@ -115,7 +116,8 @@ class KeyController extends Controller
             $key->key_string = $request->input('key_value');
             $key->save();
         }
-        return response()->json($key, 200);
+//        return response()->json($key, 200);
+        return redirect('keys');
     }
 
     /**

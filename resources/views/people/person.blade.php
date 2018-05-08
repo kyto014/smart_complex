@@ -19,7 +19,7 @@
         </div>
     </div>
     <hr>
-    <form id="person-form" data-href="{{ url('/people') }}/{{ $person->person_id }}" method="post">
+    <form id="person-form" action="{{ url('/people') }}/{{ $person->person_id }}" method="post">
         {{ csrf_field() }}
     <div class="form-group row">
         <label for="staticName" class="col-sm-2 col-form-label">*meno</label>

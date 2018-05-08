@@ -24,14 +24,14 @@
         </div>
     </div>
     <hr>
-    <form id="key-form" data-href="{{ url('/keys') }}/{{$key->key_id}}" method="post">
+    <form id="key-form" action="{{ url('/keys') }}/{{$key->key_id}}" method="post">
         {{ csrf_field() }}
         {{--{{$key}}--}}
 
         <div class="form-group row">
             <label for="staticKeyType" class="col-sm-2 col-form-label">*typ kľúča</label>
             <div class="col-sm-4">
-                <select name="key_type_id" class="form-control" id="staticKeyType">
+                <select name="key_type_id" class="form-control" id="staticKeyType" required>
                     @foreach($key_types as $kt)
                         <option value="{{$kt->key_type_id}}" @if($kt->key_type_id == $key->key_type_id) selected @endif>{{$kt->name}}</option>
                     @endforeach
@@ -41,7 +41,7 @@
         <div class="form-group row">
             <label for="staticKeyState" class="col-sm-2 col-form-label">*stav kľúča</label>
             <div class="col-sm-4">
-                <select name="key_state_id" class="form-control" id="staticKeyState">
+                <select name="key_state_id" class="form-control" id="staticKeyState" required>
                     @foreach($key_states as $ks)
                         <option value="{{$ks->key_state_id}}" @if($ks->key_state_id == $key->key_state_id) selected @endif>{{$ks->name}}</option>
                     @endforeach
@@ -51,13 +51,13 @@
         <div class="form-group row">
             <label for="staticKeyValue" class="col-sm-2 col-form-label">*hodnota</label>
             <div class="col-sm-4">
-                <input type="text" name="key_value" class="form-control" id="staticKeyValue" value="{{$key->key_string}}">
+                <input type="text" name="key_value" class="form-control" id="staticKeyValue" value="{{$key->key_string}}" required>
             </div>
         </div>
         <div class="form-group row">
             <label for="staticPerson" class="col-sm-2 col-form-label">*držiteľ</label>
             <div class="col-sm-4 form-group">
-                <select name="person_id" class="selectpicker form-control" data-live-search="true" data-size="5">
+                <select name="person_id" class="selectpicker form-control" data-live-search="true" data-size="5" required>
                     @foreach($people as $p)
                         {{--{{$p}}--}}
                         <option value="{{$p->person_id}}" @if($p->person_id == $key->person_id) selected @endif>{{$p->forname}} {{$p->surname}}</option>

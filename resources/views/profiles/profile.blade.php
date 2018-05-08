@@ -33,7 +33,7 @@
     </div>
     <hr>
     {{--{{$profile}}--}}
-    <form id="profile-form" data-href="{{ url('/profiles') }}/{{$profile->profile_id}}" method="post">
+    <form id="profile-form" action="{{ url('/profiles') }}/{{$profile->profile_id}}" method="post">
         {{ csrf_field() }}
         <div class="form-group row">
             <label for="staticName" class="col-sm-2 col-form-label">*názov</label>
