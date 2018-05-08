@@ -4,5 +4,5 @@
 @stop
 
 @section('content')
-    <div style="color:#fff">lorem ipsum</div>
+    <div >Používateľské rozhranie pre systém Smart Complex </div>
 @stop
