@@ -76,7 +76,7 @@
                     <td class="td-col1">{{$pp->profile_name}}</td>
                     <td class="td-col2">{{$pp->description}}</td>
                     <td class="col-btns">
-                        <button class="btn buttonDoSomething btn-warning btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        <a class="btn buttonDoSomething btn-warning btn-sm" href="{{ url('/profiles') }}/{{ $pp->profile_id }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                         <button id="removeRowProfiles" class="btn buttonDoSomething btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
                     </td>
                 </tr>
@@ -135,7 +135,7 @@
                         <td class="td-col1">{{$pk->keyType->name}}</td>
                         <td class="td-col2">{{$pk->keyState->name}}</td>
                         <td class="col-btns">
-                            <button class="btn buttonDoSomething btn-warning btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                            <a class="btn buttonDoSomething btn-warning btn-sm" href="{{ url('/keys') }}/{{ $pk->key_id }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                             <button id="removeRowKeys" class="btn buttonDoSomething btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
                         </td>
                     </tr>
