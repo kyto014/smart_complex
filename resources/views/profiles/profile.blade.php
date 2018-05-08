@@ -12,15 +12,6 @@
 @section('content')
     <script>
         $('.selectpicker').selectpicker();
-        {{--var values = {!! json_encode($profile->accesses) !!};--}}
-        {{--ids = [];--}}
-        {{--for (var i = 0, len = values.length; i < len; i++) {--}}
-            {{--ids.push(values[i]['access_id']);--}}
-        {{--}--}}
-
-
-        //        $('#staticAccesses').val(ids).trigger('change');
-//        console.log(ids);
     </script>
 
     <div class="form-group row">

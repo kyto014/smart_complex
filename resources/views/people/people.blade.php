@@ -13,20 +13,8 @@
 //                data: dataSet,
                 columns: [null, null, null, null]
             } );
-
-            $('.page-table-td').on("click",function(){
-                window.location = $(this).closest('tr').data('href');
-                return false;
-            });
-
-            $('.deletePerson').on("click",function(){
-                $("#personName").text($(this).data('content'));
-                $("#btn-continue").attr('data-href', $(this).data('href'));
-                $("#continue-modal").modal("toggle");
-                return false;
-            });
-//            toastr.info('Are you the 6 fingered man?')
         } );
+
     </script>
     <div >
     <h1 class="mainTitle">ľudia</h1>

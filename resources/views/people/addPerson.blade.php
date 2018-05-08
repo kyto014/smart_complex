@@ -2,9 +2,14 @@
 @section('additional_headers')
     <link href="{{ URL::asset('css/style_other_views.css') }}" rel="stylesheet"/>
     <link href="{{ URL::asset('css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/bootstrap-select.css') }}" rel="stylesheet">
+    <script src="{{ URL::asset('js/bootstrap-select.js') }}"></script>
 @stop
 
 @section('content')
+    <script>
+        $('.selectpicker').selectpicker();
+    </script>
     <div class="form-group row">
         <div class="col-sm-2 col-form-label">
             <a href="{{ url('/people') }}" class="btn btn-back cancel-btn"> Späť </a>
@@ -57,10 +62,17 @@
         <div class="form-group row">
             <label for="selectProfile" class="col-sm-2 col-form-label">profily</label>
             <div class="col-sm-4">
-                <select name="profiles[]" class="form-control" id="selectProfile" >
-                    <option value="" >--</option>
+                {{--<select name="profiles[]" class="form-control" id="selectProfile" >--}}
+                    {{--<option value="" >--</option>--}}
+                    {{--@foreach($profiles as $p)--}}
+                        {{--<option value="{{$p->profile_id}}" >{{$p->profile_name}}</option>--}}
+                    {{--@endforeach--}}
+                {{--</select>--}}
+                <select name="profiles[]" class="selectpicker form-control" data-live-search="true" id="selectProfile" multiple>
                     @foreach($profiles as $p)
-                        <option value="{{$p->profile_id}}" >{{$p->profile_name}}</option>
+
+                            <option value="{{$p->profile_id}}" >{{$p->profile_name}}</option>
+
                     @endforeach
                 </select>
             </div>

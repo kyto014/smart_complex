@@ -16,3 +16,37 @@ $(document).on('click', '#btn-continue', function(e) {
     });
     e.preventDefault();
 });
+
+$('.page-table-td').on("click",function(){
+    window.location = $(this).closest('tr').data('href');
+    return false;
+});
+
+$('.deletePerson').on("click",function(){
+    $("#personName").text($(this).data('content'));
+    $("#btn-continue").attr('data-href', $(this).data('href'));
+    $("#continue-modal").modal("toggle");
+    return false;
+});
+
+$('.deleteAccess').on("click",function(){
+    $("#accessName").text($(this).data('content'));
+    $("#btn-continue").attr('data-href', $(this).data('href'));
+    $("#continue-modal").modal("toggle");
+    return false;
+});
+
+$('.deleteKey').on("click",function(){
+    $("#keyName").text($(this).data('content'));
+    $("#btn-continue").attr('data-href', $(this).data('href'));
+    $("#continue-modal").modal("toggle");
+    return false;
+});
+
+
+$('.deleteProfile').on("click",function(){
+    $("#profileName").text($(this).data('content'));
+    $("#btn-continue").attr('data-href', $(this).data('href'));
+    $("#continue-modal").modal("toggle");
+    return false;
+});

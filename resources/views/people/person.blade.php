@@ -5,11 +5,6 @@
 @stop
 
 @section('content')
-    {{--<div class="form-group row">--}}
-        {{--<div class="col-sm-2 col-form-label">--}}
-            {{--<a href="{{ url('/people') }}" class="btn btn-back"> Späť </a>--}}
-        {{--</div>--}}
-    {{--</div>--}}
     <div class="form-group row">
         <div class="col-sm-2 col-form-label">
             <a href="{{ url('/people') }}" class="btn btn-back cancel-btn"> Späť </a>
