@@ -13,6 +13,7 @@
 //         data: $(this).serialize(),
 //         success: function (data) {
 //             window.location.href = window.location.href;
+//             console.log(data);
 //         }
 //     });
 //     e.preventDefault();

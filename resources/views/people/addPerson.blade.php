@@ -14,7 +14,7 @@
         </div>
     </div>
     <hr>
-    <form id="create-person-form" data-href="{{ url('/people') }}" method="post">
+    <form id="create-person-form" action="{{ url('/people') }}" method="post">
         {{ csrf_field() }}
         <div class="form-group row">
             <label for="staticName" class="col-sm-2 col-form-label">*meno</label>

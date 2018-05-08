@@ -11,6 +11,7 @@ use App\Models\RFID\v1\Profile;
 use App\Models\RFID\v1\Role;
 use App\Models\RFID\v1\SecondFactorType;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 
 class PersonController extends Controller
@@ -81,8 +82,8 @@ class PersonController extends Controller
         }
 
 //        return response()->json($person,201);
-//        return redirect('/people');
-        return redirect()->route('people');
+   return redirect('people');
+       // return redirect()->route('/people');
 //        return redirect()->action('PersonController@getAll');
     }
 

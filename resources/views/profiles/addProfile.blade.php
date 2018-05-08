@@ -24,7 +24,7 @@
         </div>
     </div>
     <hr>
-    <form id="profile-form" data-href="{{ url('/profiles') }}" method="post">
+    <form id="profile-form" data-href="{{ route('/profiles') }}" method="post">
         {{ csrf_field() }}
         <div class="form-group row">
             <label for="staticName" class="col-sm-2 col-form-label">*názov</label>
