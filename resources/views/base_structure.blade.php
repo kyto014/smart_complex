@@ -51,6 +51,7 @@
                     <li><a href="{{ url('/profiles') }}">profily</a></li>
                     <li><a href="{{ url('/accesses') }}">prístupy</a></li>
                     <li><a href="{{ url('/keys') }}">kľúče</a></li>
+                    <li><a href="{{ url('/addSecondFactor') }}">Pridaj/zmeň druhý faktor</a></li>
                 </ul>
             </div>
         </div>

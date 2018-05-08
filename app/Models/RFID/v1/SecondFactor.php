@@ -4,6 +4,9 @@ namespace App\Models\RFID\v1;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property \Illuminate\Config\Repository|mixed second_factor_type_id
+ */
 class SecondFactor extends Model
 {
     /**
@@ -30,6 +33,10 @@ class SecondFactor extends Model
 
     public function secondFactorType(){
         return $this->belongsTo('App\Models\RFID\v1\SecondFactorType','second_factor_type_id');
+    }
+
+    public function secondFactor(){
+        return $this->belongsTo('App\Models\RFID\v1\SecondFactor','second_factor_id');
     }
 
     public function people(){

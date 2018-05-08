@@ -7,8 +7,10 @@ use App\Models\RFID\v1\Key;
 use App\Models\RFID\v1\Key_type;
 use App\Models\RFID\v1\Person;
 use App\Models\RFID\v1\Person_type;
+use App\Models\RFID\v1\PersonSecondFactor;
 use App\Models\RFID\v1\Profile;
 use App\Models\RFID\v1\Role;
+use App\Models\RFID\v1\SecondFactor;
 use App\Models\RFID\v1\SecondFactorType;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -69,6 +71,20 @@ class PersonController extends Controller
                 $person->keys()->save($key);
                 AuditLogController::create("Key create", '1', $person_id,'Vytvorenie kluca pre prave vytvoreneho pouzivatela');
 
+                if ($request->input('key') == config('variables.key_types.tag')){
+                    $second_factor = new SecondFactor();
+                    $second_factor->second_factor_type_id = config('variables.second_factor_type.code');
+                    $second_factor->second_factor_string = '';
+                    $second_factor->save();
+
+                    $second_factor_id = $second_factor->second_factor_id;
+
+                    $person_second_factor = new PersonSecondFactor();
+                    $person_second_factor->person_id = $person_id;
+                    $person_second_factor->second_factor_id = $second_factor_id;
+                    $person_second_factor->save();
+
+                }
             }
         }
 
