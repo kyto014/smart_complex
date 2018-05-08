@@ -95,11 +95,11 @@ class DoorController extends Controller
     public function enter()
     {
         $door = Door::where('door_uuid',\request()->get('door_uuid'))->first();
-        $key_string = Key::where('key_string',\request()->get('key_string'))->first();
+        $key = Key::where('key_string',\request()->get('key_string'))->first();
 
         // pokial sa jedna z veci nenachadza v databaze, vrati sa resultCode 0
-        if ($door and $key_string){
-            $key = new KeyResource($key_string);
+        if ($door and $key){
+            $key = new KeyResource($key);
             //chybova hlaska: neznamy kluc
             $person = Person::with('profiles.accesses')->where('person_id',$key->person_id)->first();
             $person_id = $person->person_id;

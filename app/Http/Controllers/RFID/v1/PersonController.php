@@ -89,13 +89,15 @@ class PersonController extends Controller
         }
 
         if ($request->input('profiles') != null ){
-            foreach ($request->input('profiles') as $profile_id){
-                if($profile_id != "") {
-                    $profile = Profile::find($profile_id);
-                    $person->profiles()->attach($profile);
-                }
-            }
+            $person = Person::find($person_id);
+            $person->profiles()->attach($request->input('profiles'));
         }
+
+//        if ($request->input('accesses') != null) {
+//            $profile = Profile::find($profile->profile_id);
+//            $accesses = Access::whereIn('access.access_id', $request->input('accesses'))->get();
+//            $profile->accesses()->attach($accesses);
+//        }
         $notification = array(
             'message' => 'Osoba bola vytvorená!',
             'alert-type' => 'success'
@@ -120,10 +122,12 @@ class PersonController extends Controller
         $second_factor_types = SecondFactorType::all();
         $roles = Role::all();
         $types = Person_type::all();
+        $profiles = Profile::all();
         $data = ['person' => $person,
                 'second_factor_types' => $second_factor_types,
                 'roles' => $roles,
-                'types' => $types];
+                'types' => $types,
+                'profiles' => $profiles];
         return view('people.person', $data);
     }
 
@@ -164,9 +168,9 @@ class PersonController extends Controller
 //            $person->secondFactors()->detach();
 //        }
 
+
         if ($request->input('profiles') != null) {
-            $profiles = $person->profiles()->whereIn('profile.profile_id', $request->input('profiles'))->get();
-            $person->profiles()->sync($profiles);
+            $person->profiles()->sync($request->input('profiles'));
         } else {
             $person->profiles()->detach();
         }

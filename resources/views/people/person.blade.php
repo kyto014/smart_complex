@@ -2,9 +2,16 @@
 @section('additional_headers')
     <link href="{{ URL::asset('css/style_other_views.css') }}" rel="stylesheet"/>
     <link href="{{ URL::asset('css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/bootstrap-select.css') }}" rel="stylesheet">
+    <script src="{{ URL::asset('js/bootstrap-select.js') }}"></script>
+
 @stop
 
 @section('content')
+    <script>
+        $('.selectpicker').selectpicker();
+    </script>
+
     <div class="form-group row">
         <div class="col-sm-2 col-form-label">
             <a href="{{ url('/people') }}" class="btn btn-back cancel-btn"> Späť </a>
@@ -56,30 +63,51 @@
     </div>
     <div class="form-group row">
         <label for="tableProfiles" class="col-sm-2 col-form-label">profily</label>
-        <div class="col-sm-10">
-            @if(count($person->profiles) != 0)
-            <table class="subTable table table-bordered" id="tableProfiles">
-                <thead class="subTable-thead"><tr>
-                    <th class="col1">názov</th>
-                    <th class="col2">popis</th>
-                    <th ></th>
-                </tr></thead>
-                <tbody id="bodyTableProfiles">
-                @foreach($person->profiles as $pp)
-                <tr id="trProfile{{$pp->profile_id}}">
-                    <input id="iProfile{{$pp->profile_id}}" name="profiles[]" value="{{$pp->profile_id}}" hidden>
-                    <td class="td-col1">{{$pp->profile_name}}</td>
-                    <td class="td-col2">{{$pp->description}}</td>
-                    <td class="col-btns">
-                        <a class="btn buttonDoSomething btn-warning btn-sm" href="{{ url('/profiles') }}/{{ $pp->profile_id }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                        <button id="removeRowProfiles" class="btn buttonDoSomething btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                    </td>
-                </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            @endif
-            <p id="tableProfilesEmpty" class="emptyTable" style="display: @if(sizeof($person->profiles)>0) none @else block @endif">žiadne záznamy</p>
+        {{--<div class="col-sm-10">--}}
+            {{--@if(count($person->profiles) != 0)--}}
+            {{--<table class="subTable table table-bordered" id="tableProfiles">--}}
+                {{--<thead class="subTable-thead"><tr>--}}
+                    {{--<th class="col1">názov</th>--}}
+                    {{--<th class="col2">popis</th>--}}
+                    {{--<th ></th>--}}
+                {{--</tr></thead>--}}
+                {{--<tbody id="bodyTableProfiles">--}}
+                {{--@foreach($person->profiles as $pp)--}}
+                {{--<tr id="trProfile{{$pp->profile_id}}">--}}
+                    {{--<input id="iProfile{{$pp->profile_id}}" name="profiles[]" value="{{$pp->profile_id}}" hidden>--}}
+                    {{--<td class="td-col1">{{$pp->profile_name}}</td>--}}
+                    {{--<td class="td-col2">{{$pp->description}}</td>--}}
+                    {{--<td class="col-btns">--}}
+                        {{--<a class="btn buttonDoSomething btn-warning btn-sm" href="{{ url('/profiles') }}/{{ $pp->profile_id }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>--}}
+                        {{--<button id="removeRowProfiles" class="btn buttonDoSomething btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>--}}
+                    {{--</td>--}}
+                {{--</tr>--}}
+                    {{--@endforeach--}}
+                {{--</tbody>--}}
+            {{--</table>--}}
+            {{--@endif--}}
+            {{--<p id="tableProfilesEmpty" class="emptyTable" style="display: @if(sizeof($person->profiles)>0) none @else block @endif">žiadne záznamy</p>--}}
+        {{--</div>--}}
+
+        <div class="col-sm-4 form-group">
+            <select name="profiles[]" class="selectpicker form-control" data-live-search="true" data-size="5" id="tableProfiles" multiple>
+                @foreach($profiles as $p)
+                    <?php $tmp = 0; ?>
+                    @if(count($person->profiles) != 0)
+                        @foreach($person->profiles as $pa)
+                            @if($p->profile_id == $pa['profile_id'])
+                                    <?php $tmp = 1; ?>
+                                    <option value="{{$p->profile_id}}" selected >{{$p->profile_name}}</option>
+                            @endif
+                        @endforeach
+                        @if($tmp == 0)
+                                <option value="{{$p->profile_id}}">{{$p->profile_name}}</option>
+                            @endif
+                    @else
+                        <option value="{{$p->profile_id}}" >{{$p->profile_name}}</option>
+                    @endif
+                @endforeach
+            </select>
         </div>
     </div>
 

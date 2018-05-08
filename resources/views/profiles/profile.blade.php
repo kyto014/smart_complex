@@ -43,10 +43,17 @@
             <div class="col-sm-4 form-group">
                 <select name="accesses[]" class="selectpicker form-control" data-live-search="true" data-size="5" id="staticAccesses" multiple>
                     @foreach($accesses as $a)
+                        <?php $tmp = 0; ?>
                         @if(count($profile->accesses) != 0)
-                        @foreach($profile->accesses as $pa)
-                        <option value="{{$a->access_id}}" @if($a->access_id == $pa['access_id']) selected @endif>{{$a->access_name}}</option>
+                            @foreach($profile->accesses as $pa)
+                                @if($a->access_id == $pa['access_id'])
+                                    <?php $tmp = 1; ?>
+                                    <option value="{{$a->access_id}}"  selected>{{$a->access_name}}</option>
+                                @endif
                             @endforeach
+                            @if($tmp == 0)
+                                <option value="{{$a->access_id}}" >{{$a->access_name}}</option>
+                            @endif
                         @else
                             <option value="{{$a->access_id}}" >{{$a->access_name}}</option>
                         @endif
