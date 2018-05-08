@@ -64,7 +64,12 @@ class ProfileController extends Controller
         }
 
 //        return response()->json($profile, 201);
-        return redirect('profiles');
+//        return redirect('profiles');
+        $notification = array(
+            'message' => 'Profil bol vytvorený!',
+            'alert-type' => 'success'
+        );
+        return redirect('profiles')->with($notification);
 
         // store profile for person
         //$person = Person::find($person_id);
@@ -127,8 +132,13 @@ class ProfileController extends Controller
 //            $profile = Profile::with('accesses')->where('profile_id', $profile_id)->first();
 //            return $profile;
         }
-        return redirect('profiles');
+//        return redirect('profiles');
 //        return response()->json(400);
+        $notification = array(
+            'message' => 'Zmeny boli uložené!',
+            'alert-type' => 'success'
+        );
+        return redirect('profiles')->with($notification);
 
     }
 

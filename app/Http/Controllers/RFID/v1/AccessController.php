@@ -64,7 +64,12 @@ class AccessController extends Controller
 //            return response()->json($access,201);
         }
 //        return response()->json(400);
-        return redirect('accesses');
+//        return redirect('accesses');
+        $notification = array(
+            'message' => 'Prístup bol vytvorený!',
+            'alert-type' => 'success'
+        );
+        return redirect('accesses')->with($notification);
     }
 
     /**
@@ -113,7 +118,12 @@ class AccessController extends Controller
 //            return response()->json($access,200);
         }
 //        return response()->json(400);
-        return redirect('accesses');
+//        return redirect('accesses');
+        $notification = array(
+            'message' => 'Zmeny boli uložené!',
+            'alert-type' => 'success'
+        );
+        return redirect('accesses')->with($notification);
     }
 
     /**

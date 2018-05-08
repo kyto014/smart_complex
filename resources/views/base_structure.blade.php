@@ -8,16 +8,41 @@
 {{--        <script src="{{ URL::asset('js/popper.js') }}" type="text/javascript" ></script>--}}
         <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
         <script src="{{ URL::asset('js/dataTables.min.js') }}" type="text/javascript" ></script>
+        <script src="{{ URL::asset('js/toastr.min.js') }}" type="text/javascript" ></script>
 
         <link href="{{ URL::asset('css/dataTables.min.css') }}" rel="stylesheet"/>
         {{--<link href="{{ URL::asset('css/jquery.dataTables.min.css') }}" rel="stylesheet"/>--}}
         <link href="{{ URL::asset('css/bootstrap.css') }}" rel="stylesheet">
         <link href="{{ URL::asset('css/additional_style.css') }}" rel="stylesheet">
 
+        <link href="{{ URL::asset('css/toastr.min.css') }}" rel="stylesheet">
+
         @yield('additional_headers')
         <title>Smart complex</title>
     </head>
     <body>
+
+    <script>
+        @if(Session::has('message'))
+            var type = "{{Session::get('alert-type', 'info')}}";
+            switch (type){
+                case 'info':
+                    toastr.info("{{Session::get('message')}}");
+                    break;
+                case 'success':
+                    toastr.success("{{Session::get('message')}}");
+                    break;
+                case 'warning':
+                    toastr.warning("{{Session::get('message')}}");
+                    break;
+                case 'error':
+                    toastr.error("{{Session::get('message')}}");
+                    break;
+            }
+            @endif
+
+    </script>
+
         <div class="jumbotron">
             <div class="container navbarDiv">
                 <a id="logo" class="logo" href="{{ url('/') }}" >SmartComplex</a>

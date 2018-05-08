@@ -80,9 +80,13 @@ class PersonController extends Controller
                 }
             }
         }
-
+        $notification = array(
+            'message' => 'Osoba bola vytvorená!',
+            'alert-type' => 'success'
+        );
+        return redirect('people')->with($notification);
 //        return response()->json($person,201);
-   return redirect('people');
+//   return redirect('people');
        // return redirect()->route('/people');
 //        return redirect()->action('PersonController@getAll');
     }
@@ -151,8 +155,12 @@ class PersonController extends Controller
             $person->profiles()->detach();
         }
 
-//        return response()->json($person,201);
-        return redirect('people');
+        $notification = array(
+            'message' => 'Zmeny boli uložené!',
+            'alert-type' => 'success'
+        );
+        return redirect('people')->with($notification);
+//        return redirect('people')->with('err_code', ['type' => 'error', 'msg' => 'Operation not permitted']);
     }
 
     /**

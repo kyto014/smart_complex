@@ -124,3 +124,6 @@ hr {
 body{
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+#toast-container{
+    margin-top: 20px !important;
+}

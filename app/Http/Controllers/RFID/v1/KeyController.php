@@ -72,7 +72,12 @@ class KeyController extends Controller
 
 //        return response()->json($key,201);
         //to delete keys
-        return redirect('keys');
+//        return redirect('keys');
+        $notification = array(
+            'message' => 'Kľúč bol vytvorený!',
+            'alert-type' => 'success'
+        );
+        return redirect('keys')->with($notification);
         // $person->keys()->delete();
         //$person->delete();
     }
@@ -117,7 +122,12 @@ class KeyController extends Controller
             $key->save();
         }
 //        return response()->json($key, 200);
-        return redirect('keys');
+//        return redirect('keys');
+        $notification = array(
+            'message' => 'Zmeny boli uložené!',
+            'alert-type' => 'success'
+        );
+        return redirect('keys')->with($notification);
     }
 
     /**

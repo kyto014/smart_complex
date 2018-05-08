@@ -3,6 +3,7 @@
     <link href="{{ URL::asset('css/additional_style_tables.css') }}" rel="stylesheet"/>
     <link href="{{ URL::asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
 @stop
 
 @section('content')
@@ -24,6 +25,7 @@
                 $("#continue-modal").modal("toggle");
                 return false;
             });
+//            toastr.info('Are you the 6 fingered man?')
         } );
     </script>
     <div >
