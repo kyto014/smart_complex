@@ -100,10 +100,8 @@ class DoorController extends Controller
         // pokial sa jedna z veci nenachadza v databaze, vrati sa resultCode 0
         if ($door and $key){
             $key = new KeyResource($key);
-            //chybova hlaska: neznamy kluc
             $person = Person::with('profiles.accesses')->where('person_id',$key->person_id)->first();
             $person_id = $person->person_id;
-            //chybova hlaska: uzivatel nema ziadne profily
             $accesses = array();
 
 
@@ -125,7 +123,7 @@ class DoorController extends Controller
                 }
             }
 
-            if ($resultCode == config('variables.operation_code.access_allowed')) { // && dvere pozaduju autentifikaciu 2 stupna
+            if ($resultCode == config('variables.operation_code.access_allowed')) {
                 if ($key->key_type_id == config('variables.key_types.tag')) {// key_type_id hovorim o tom, ze je to TAG cize mobil
                     $second_factor_type_id = $door->second_factor_type_id;
                     if ($second_factor_type_id == config('variables.second_factor_type.code')) {
@@ -150,7 +148,6 @@ class DoorController extends Controller
             }
         } else{
             $resultCode = config('variables.operation_code.access_denied');
-            AuditLogController::create("Prítup do objektu", config('variables.operation_code.access_denied'), '','Parameters were not properly set.');
         }
 
         return response()->json(['operation_code' => $resultCode],200);

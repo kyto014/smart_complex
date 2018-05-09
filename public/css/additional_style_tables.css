@@ -84,3 +84,6 @@ table tbody tr td{
 .bold{
     font-weight: bold;
 }
+#delete-form{
+    display: inline-block;
+}

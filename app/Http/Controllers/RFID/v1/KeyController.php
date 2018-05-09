@@ -139,8 +139,13 @@ class KeyController extends Controller
      */
     public function delete($key_id)
     {
+
         $key = Key::where('key_id',$key_id)->first();
         $key->delete();
-        return response()->json('Key deleted', 200);
+        $notification = array(
+            'message' => 'Kľúč bol odstránený!',
+            'alert-type' => 'success'
+        );
+        return redirect('keys')->with($notification);
     }
 }

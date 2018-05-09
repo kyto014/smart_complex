@@ -158,5 +158,10 @@ class ProfileController extends Controller
             $profile->people()->detach();
         }
         Profile::destroy($profile_id);
+        $notification = array(
+            'message' => 'Profil bol odstránený!',
+            'alert-type' => 'success'
+        );
+        return redirect('profiles')->with($notification);
     }
 }

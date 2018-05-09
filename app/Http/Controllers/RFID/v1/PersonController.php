@@ -221,6 +221,11 @@ class PersonController extends Controller
         */
 
         Person::destroy($person_id);
+        $notification = array(
+            'message' => 'Osoba bol odstránená!',
+            'alert-type' => 'success'
+        );
+        return redirect('people')->with($notification);
     }
 
 }

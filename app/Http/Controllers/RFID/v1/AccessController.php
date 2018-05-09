@@ -50,21 +50,27 @@ class AccessController extends Controller
      */
     public function create(Request $request)
     {
-        if(strtotime($request->input('access_time_from')) < strtotime($request->input('access_time_to'))){
+        if(strtotime($request->input('access_time_from')) < strtotime($request->input('access_time_to'))) {
             $access = new Access();
             $access->access_name = $request->input('access_name');
-            $access->time_from = str_replace("T", " ", $request->input('access_time_from')).":00";
-            $access->time_to = str_replace("T", " ", $request->input('access_time_to')).":00";
+            $access->time_from = str_replace("T", " ", $request->input('access_time_from')) . ":00";
+            $access->time_to = str_replace("T", " ", $request->input('access_time_to')) . ":00";
             $access->door_id = $request->input('door_id');
-            if($request->input('next_access_id') != "") {
+            if ($request->input('next_access_id') != "") {
                 $access->next_access_id = $request->input('next_access_id');
             }
             $access->save();
 
-//            return response()->json($access,201);
+            $notification = array(
+                'message' => 'Prístup bol vytvorený!',
+                'alert-type' => 'success'
+            );
+        }else{
+            $notification = array(
+                'message' => 'Čas od musí byť menší ako čas do.',
+                'alert-type' => 'error'
+            );
         }
-//        return response()->json(400);
-//        return redirect('accesses');
         $notification = array(
             'message' => 'Prístup bol vytvorený!',
             'alert-type' => 'success'
@@ -134,6 +140,13 @@ class AccessController extends Controller
      */
     public function delete($access_id)
     {
-        return Access::destroy($access_id);
+        $notification = array(
+            'message' => 'Prístup bol odstránený!',
+            'alert-type' => 'success'
+        );
+        Access::destroy($access_id);
+        return redirect('accesses')->with($notification);
     }
+
+
 }

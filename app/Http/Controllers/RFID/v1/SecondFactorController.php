@@ -102,11 +102,15 @@ class SecondFactorController extends Controller
 
     public function delete($second_factor_id)
     {
-
-        $person_second_factor = PersonSecondFactor::where('second_factor_id',$second_factor_id)->first();
+//        $person_second_factor = PersonSecondFactor::where('second_factor_id',$second_factor_id)->first();
         $second_factor = SecondFactor::where('second_factor_id',$second_factor_id)->first();
 
-        $person_second_factor->delete();
+//        $person_second_factor->delete();
         $second_factor->delete();
+        $notification = array(
+            'message' => 'Druhý faktor bol odstránený!',
+            'alert-type' => 'success'
+        );
+        return redirect('secondFactors')->with($notification);
     }
 }

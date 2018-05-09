@@ -38,7 +38,7 @@
                             <td class="page-table-td"><i class="fa fa-search-plus" ></i>{{$k->type_name}}</td>
                             <td class="page-table-td capitalize">{{$person->forname}} {{$person->surname}}</td>
                             <td class="col-delete" >
-                                <a data-href="{{ url('/secondFactors') }}/{{ $second_factor->second_factor_id }}" data-content="{{$k->type_name}} osoby {{$person->forname}} {{$person->surname}}" class="deleteSecondFactor" data-toggle="modal" data-target="#continue-modal" href="" style="width: 100%"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                <a data-href="{{ url('/secondFactors-delete') }}/{{ $second_factor->second_factor_id }}" data-content="{{$k->type_name}} osoby {{$person->forname}} {{$person->surname}}" class="deleteSecondFactor" data-toggle="modal" data-target="#continue-modal" href="" style="width: 100%"><i class="fa fa-trash" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -52,18 +52,20 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Chcete naozaj zmazať tento záznam?</h5>
+                    {{--<h5 class="modal-title" id="exampleModalLabel">Chcete naozaj zmazať tento záznam?</h5>--}}
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Chcete naozaj zmazať kľúč <span id="secondFactorName" style="font-weight: 500;"></span>?</p>
+                    <p>Chcete naozaj zmazať druhý faktor <span id="secondFactorName" style="font-weight: 500;"></span>?</p>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Zrušiť</button>
-                    <button id="btn-continue" data-href="" type="button" class="btn btn-primary">Pokračovať</button>
+                    <form id="delete-form" action="" method="get">
+                        <button id="btn-continue" data-href="" type="submit" class="btn btn-primary">Pokračovať</button>
+                    </form>
                 </div>
             </div>
         </div>

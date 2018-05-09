@@ -45,7 +45,7 @@
                         <td class="page-table-td">{{$a->access['access_name']}}</td>
                     @endif
                     <td class="col-delete" >
-                        <a data-href="{{ url('/accesses') }}/{{ $a->access_id }}" data-content="{{$a->access_name}}" class="deleteAccess" data-toggle="modal" data-target="#continue-modal" href="" style="width: 100%"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        <a data-href="{{ url('/accesses-delete') }}/{{ $a->access_id }}" data-content="{{$a->access_name}}" class="deleteAccess" data-toggle="modal" data-target="#continue-modal" href="" style="width: 100%"><i class="fa fa-trash" aria-hidden="true"></i></a>
                     </td>
                 </tr>
             @endforeach
@@ -68,7 +68,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Zrušiť</button>
-                    <button id="btn-continue" data-href="" type="button" class="btn btn-primary">Pokračovať</button>
+                    <form id="delete-form" action="" method="get">
+                    <button id="btn-continue" data-href="" type="submit" class="btn btn-primary">Pokračovať</button>
+                    </form>
                 </div>
             </div>
         </div>

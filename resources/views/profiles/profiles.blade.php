@@ -36,7 +36,7 @@
                     <td class="page-table-td capitalize"><i class="fa fa-search-plus" ></i>{{$p->profile_name}}</td>
                     <td class="page-table-td page-table-2">{{$p->description}}</td>
                     <td class="col-delete" >
-                        <a data-href="{{ url('/profiles') }}/{{ $p->profile_id }}" data-content="{{$p->profile_name}}" class="deleteProfile" data-toggle="modal" data-target="#continue-modal" href="" style="width: 100%"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        <a data-href="{{ url('/profiles-delete') }}/{{ $p->profile_id }}" data-content="{{$p->profile_name}}" class="deleteProfile" data-toggle="modal" data-target="#continue-modal" href="" style="width: 100%"><i class="fa fa-trash" aria-hidden="true"></i></a>
                     </td>
                 </tr>
             @endforeach
@@ -59,7 +59,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Zrušiť</button>
-                    <button id="btn-continue" data-href="" type="button" class="btn btn-primary">Pokračovať</button>
+                    <form id="delete-form" action="" method="get">
+                        <button id="btn-continue" data-href="" type="submit" class="btn btn-primary">Pokračovať</button>
+                    </form>
                 </div>
             </div>
         </div>

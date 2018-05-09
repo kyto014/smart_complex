@@ -40,7 +40,7 @@
                     <td class="page-table-td capitalize page-table-2">{{$p->surname}}</td>
                     <td class="page-table-td page-table-2" >{{$p->email}}</td>
                     <td class="col-delete" >
-                        <a data-href="{{ url('/people') }}/{{ $p->person_id }}" data-content="{{$p->forname}} {{$p->surname}}" class="deletePerson" data-toggle="modal" data-target="#continue-modal" href="" style="width: 100%"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        <a data-href="{{ url('/people-delete') }}/{{ $p->person_id }}" data-content="{{$p->forname}} {{$p->surname}}" class="deletePerson" data-toggle="modal" data-target="#continue-modal" href="" style="width: 100%"><i class="fa fa-trash" aria-hidden="true"></i></a>
                     </td>
                 </tr>
             @endforeach
@@ -63,7 +63,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Zrušiť</button>
-                    <button id="btn-continue" data-href="" type="button" class="btn btn-primary">Pokračovať</button>
+                    <form id="delete-form" action="" method="get">
+                        <button id="btn-continue" data-href="" type="submit" class="btn btn-primary">Pokračovať</button>
+                    </form>
                 </div>
             </div>
         </div>
