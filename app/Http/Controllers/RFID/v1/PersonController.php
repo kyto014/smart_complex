@@ -25,13 +25,12 @@ class PersonController extends Controller
      */
     public function getAll()
     {
-        //$people = Person::with('keys')->get();
+
         $people = Person::all();
-        //return response()->json($people,200);
-//        var_dump($people);
+
         $data = ['people' => $people];
         return view('people.people', $data);
-//        return $people;
+
     }
 
 
@@ -50,7 +49,7 @@ class PersonController extends Controller
         $person->forname = $request->input('forname');
         $person->surname = $request->input('surname');
         $person->email = $request->input('email');
-//        $person->password = $request->input('password');
+
         $result = $person->save();
 
         $person_id = $person->person_id;
@@ -59,8 +58,7 @@ class PersonController extends Controller
 
         if ($request->input('key') != ""){
             if($request->input('key_string') != ""){
-                //vytvor kluce ku osobe
-                //urobit save pre vsetky kluce
+
 
                 $person = Person::where('person_id',$person_id)->first();
                 $key = new Key();
@@ -93,20 +91,13 @@ class PersonController extends Controller
             $person->profiles()->attach($request->input('profiles'));
         }
 
-//        if ($request->input('accesses') != null) {
-//            $profile = Profile::find($profile->profile_id);
-//            $accesses = Access::whereIn('access.access_id', $request->input('accesses'))->get();
-//            $profile->accesses()->attach($accesses);
-//        }
+
         $notification = array(
             'message' => 'Osoba bola vytvorená!',
             'alert-type' => 'success'
         );
         return redirect('people')->with($notification);
-//        return response()->json($person,201);
-//   return redirect('people');
-       // return redirect()->route('/people');
-//        return redirect()->action('PersonController@getAll');
+
     }
 
     /**
@@ -161,12 +152,7 @@ class PersonController extends Controller
             $person->keys()->delete();
         }
 
-//        if ($request->input('facts') != null) {
-//            $factors = $person->secondFactors()->whereIn('second_factor.second_factor_id', $request->input('facts'))->get();
-//            $person->secondFactors()->sync($factors);
-//        } else {
-//            $person->secondFactors()->detach();
-//        }
+
 
 
         if ($request->input('profiles') != null) {
@@ -180,7 +166,7 @@ class PersonController extends Controller
             'alert-type' => 'success'
         );
         return redirect('people')->with($notification);
-//        return redirect('people')->with('err_code', ['type' => 'error', 'msg' => 'Operation not permitted']);
+
     }
 
     /**
@@ -214,11 +200,7 @@ class PersonController extends Controller
             $person->secondFactors()->detach();
         }
 
-        /*
-        $keys = Key::where('person_id',$person_id)->get();
-        $ids_to_delete = array_map(function($item){ return $item['key_id']; }, $keys);
-        DB::table('keys')->whereIn('key_id', $ids_to_delete)->delete();
-        */
+
 
         Person::destroy($person_id);
         $notification = array(

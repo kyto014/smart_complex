@@ -21,15 +21,8 @@ class KeyController extends Controller
      */
     public function getAll()
     {
-        // gte all keys for specific person
-        //$keys = Person::find(1)->keys;
-
-        // !!! vrati mi osobu aj s jeho klucami
-        //$person = Person::where('person_id',$id)->with('keys')->first();
-
         $keys = Key::with('person', 'keyType', 'keyState')->get();
-//        var_dump($keys);
-//        return response()->json($keys,200);
+
         $data = [
             'keys' => $keys
         ];
@@ -71,16 +64,13 @@ class KeyController extends Controller
         $key->key_string = $request->input('key_value');
         $person->keys()->save($key);
 
-//        return response()->json($key,201);
-        //to delete keys
-//        return redirect('keys');
+
         $notification = array(
             'message' => 'Kľúč bol vytvorený!',
             'alert-type' => 'success'
         );
         return redirect('keys')->with($notification);
-        // $person->keys()->delete();
-        //$person->delete();
+
     }
 
     /**
@@ -122,8 +112,6 @@ class KeyController extends Controller
             $key->key_string = $request->input('key_value');
             $key->save();
         }
-//        return response()->json($key, 200);
-//        return redirect('keys');
         $notification = array(
             'message' => 'Zmeny boli uložené!',
             'alert-type' => 'success'

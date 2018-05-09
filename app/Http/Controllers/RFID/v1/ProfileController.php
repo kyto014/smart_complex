@@ -18,9 +18,7 @@ class ProfileController extends Controller
      */
     public function getAll()
     {
-        //$profiles = Person::where('person_id',$id)->profiles;
         $profiles = Profile::all();
-                    //Person::where('person_id',$id)->with('profiles')->first();
         $data = ['profiles' => $profiles];
         return view('profiles.profiles', $data);
     }
@@ -71,24 +69,7 @@ class ProfileController extends Controller
         );
         return redirect('profiles')->with($notification);
 
-        // store profile for person
-        //$person = Person::find($person_id);
-        //$newProfile = new Profile();
-        //$person->profiles()->attach($newProfile);
 
-        //delete profile
-        //$person->profiles()->detach($newProfile);
-        //delte all profile
-        //$person->profiles()->detach();
-
-
-
-        // === podmienka overuje takto
-        //do buducna - ci sa v profiloch cloveka nachadza dany profil alebo nie
-        // $person->profiles->contains($profile->id)
-
-        // ako ocekovat ci sa nejake profily zmenili a ktore s auz nepouzivjau, aby ich mohol vymazat a aby mohol pridat nove
-        // $person->profiles()->sync($profiles);
     }
 
     /**
@@ -99,7 +80,6 @@ class ProfileController extends Controller
      */
     public function get($profile_id)
     {
-//        $accesses = Access::with('door','access')->get();
         $profile = Profile::with('accesses')->where('profile_id', $profile_id)->first();
         $accesses = Access::all();
 
@@ -125,15 +105,11 @@ class ProfileController extends Controller
             $profile->profile_name = $request->input('name');
             $profile->description = $request->input('desc');
             $profile->save();
-            //$accesses = Access::whereIn('access.access_id', $request->input('accesses'))->get();
+
             $profile->accesses()->sync($request->input('accesses'));
-//            return response()->json($profile, 200);
-//            return redirect('profiles');
-//            $profile = Profile::with('accesses')->where('profile_id', $profile_id)->first();
-//            return $profile;
+
         }
-//        return redirect('profiles');
-//        return response()->json(400);
+
         $notification = array(
             'message' => 'Zmeny boli uložené!',
             'alert-type' => 'success'

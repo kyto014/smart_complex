@@ -34,7 +34,6 @@ class AccessController extends Controller
     {
         $accesses = Access::all();
         $doors = Door::all();
-//        $accesses = Access::with('door','access')->get();
         $data = [
             "accesses" => $accesses,
             "doors" => $doors
@@ -96,7 +95,7 @@ class AccessController extends Controller
             "doors" => $doors,
             "access" => $access
         ];
-//        print_r($access->time_from);
+
         return view('accesses.access', $data);
     }
 
@@ -121,10 +120,9 @@ class AccessController extends Controller
             }
             $access->save();
 
-//            return response()->json($access,200);
+
         }
-//        return response()->json(400);
-//        return redirect('accesses');
+
         $notification = array(
             'message' => 'Zmeny boli uložené!',
             'alert-type' => 'success'
