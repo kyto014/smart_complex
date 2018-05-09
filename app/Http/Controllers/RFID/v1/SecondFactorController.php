@@ -60,6 +60,8 @@ class SecondFactorController extends Controller
             $second_factor = new SecondFactor();
             $second_factor->second_factor_type_id = config('variables.second_factor_type.password');
             $second_factor->second_factor_string = $request->input('key_string');
+            $second_factor->valid_from = Carbon::now();
+            $second_factor->valid_to = Carbon::now()->addYears(2);
             $second_factor->save();
 
             $second_factor_id = $second_factor->second_factor_id;
