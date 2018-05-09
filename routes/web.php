@@ -44,5 +44,7 @@ Route::get('/access-create','App\Http\Controllers\RFID\v1\AccessController@creat
 Route::post('/accesses/{access_id}', 'App\Http\Controllers\RFID\v1\AccessController@update');
 Route::delete('/accesses/{access_id}','App\Http\Controllers\RFID\v1\AccessController@delete');
 
+Route::get('/secondFactors', 'App\Http\Controllers\RFID\v1\SecondFactorController@getAll');
 Route::get('/addSecondFactor', 'App\Http\Controllers\RFID\v1\SecondFactorController@getAllPeople');
-Route::post('/addSecondFactor', 'App\Http\Controllers\RFID\v1\SecondFactorController@createSecondFactor');
+Route::post('/secondFactors', 'App\Http\Controllers\RFID\v1\SecondFactorController@createSecondFactor');
+Route::delete('/secondFactors/{second_factor_id}','App\Http\Controllers\RFID\v1\SecondFactorController@delete');

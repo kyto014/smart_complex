@@ -5,6 +5,7 @@ namespace App\Http\Controllers\RFID\v1;
 use App\Models\RFID\v1\Person;
 use App\Models\RFID\v1\PersonSecondFactor;
 use App\Models\RFID\v1\SecondFactor;
+use App\Models\RFID\v1\SecondFactorType;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,6 +15,17 @@ class SecondFactorController extends Controller
     public function create()
     {
         //
+    }
+
+    public function getAll(){
+        //$secondFactors = SecondFactor::with('people')->get();
+
+        $secondFactors = SecondFactorType::with('secondFactors.people')->get();
+
+        $data = [
+            'secondFactors' => $secondFactors
+        ];
+        return view('second_factor.secondFactors', $data);
     }
 
     public function getAllPeople()
@@ -70,12 +82,31 @@ class SecondFactorController extends Controller
             $person_second_factor->person_id = $request->input('person_id');
             $person_second_factor->second_factor_id = $second_factor_id;
             $person_second_factor->save();
+            $notification = array(
+                'message' => 'Druhý faktor bol vytvorený!',
+                'alert-type' => 'success'
+            );
         } else{
             SecondFactor::where('second_factor_type_id', config('variables.second_factor_type.password'))
                 ->where('second_factor_id', $sf)->update(['second_factor_string' => $request->input('key_string'), 'valid_from' =>
                     Carbon::now(), 'valid_to' => Carbon::now()->addYears(2)]);
+            $notification = array(
+                'message' => 'Druhý faktor bol zmenený!',
+                'alert-type' => 'success'
+            );
         }
 
-        return redirect('people');
+        return redirect('secondFactors')->with($notification);
+    }
+
+
+    public function delete($second_factor_id)
+    {
+
+        $person_second_factor = PersonSecondFactor::where('second_factor_id',$second_factor_id)->first();
+        $second_factor = SecondFactor::where('second_factor_id',$second_factor_id)->first();
+
+        $person_second_factor->delete();
+        $second_factor->delete();
     }
 }

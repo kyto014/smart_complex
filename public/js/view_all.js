@@ -43,6 +43,13 @@ $('.deleteKey').on("click",function(){
     return false;
 });
 
+$('.deleteSecondFactor').on("click",function(){
+    $("#secondFactorName").text($(this).data('content'));
+    $("#btn-continue").attr('data-href', $(this).data('href'));
+    $("#continue-modal").modal("toggle");
+    return false;
+});
+
 
 $('.deleteProfile').on("click",function(){
     $("#profileName").text($(this).data('content'));

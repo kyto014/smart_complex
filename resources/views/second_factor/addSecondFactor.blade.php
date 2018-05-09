@@ -7,14 +7,14 @@
 @section('content')
     <div class="form-group row">
         <div class="col-sm-2 col-form-label">
-            <a href="{{ url('/people') }}" class="btn btn-back cancel-btn"> Späť </a>
+            <a href="{{ url('/secondFactors') }}" class="btn btn-back cancel-btn"> Späť </a>
         </div>
         <div class="col-sm-10">
             <h1 class="mainTitle" id="staticPerson">Pridaj/zmeň druhý faktor typu heslo pre osobu</h1>
         </div>
     </div>
     <hr>
-    <form id="create-person-form" action="{{ url('/addSecondFactor') }}" method="post">
+    <form id="create-sf-form" action="{{ url('/secondFactors') }}" method="post">
         {{ csrf_field() }}
         <div class="form-group row">
             <label for="staticPersonType" class="col-sm-2 col-form-label">*Osoba</label>
@@ -35,7 +35,7 @@
         <div class="form-group row">
             <div style="margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;width: 20%">
                 <button type="submit" class="btn save-btn btn-success" style="width: 40%; margin-right: 5px;">Uložiť</button>
-                <a class="btn cancel-btn btn-basic" href="{{ url('/people') }}" style="width: 40%">Zrušiť</a>
+                <a class="btn cancel-btn btn-basic" href="{{ url('/secondFactors') }}" style="width: 40%">Zrušiť</a>
             </div>
         </div>
     </form>

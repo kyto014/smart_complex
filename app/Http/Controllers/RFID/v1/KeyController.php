@@ -33,6 +33,7 @@ class KeyController extends Controller
         $data = [
             'keys' => $keys
         ];
+
         return view('keys.keys', $data);
     }
 
@@ -85,7 +86,7 @@ class KeyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Key  $key
+     * @param $key_id
      * @return \Illuminate\Http\Response
      */
     public function get($key_id)
@@ -106,8 +107,8 @@ class KeyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Key  $key
+     * @param  \Illuminate\Http\Request $request
+     * @param $key_id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $key_id)
@@ -133,12 +134,12 @@ class KeyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Key  $key
+     * @param $key_id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($person_id, $key_id)
+    public function delete($key_id)
     {
-        $key = Key::where([['person_id',$person_id],['key_id',$key_id]])->first();
+        $key = Key::where('key_id',$key_id)->first();
         $key->delete();
         return response()->json('Key deleted', 200);
     }
